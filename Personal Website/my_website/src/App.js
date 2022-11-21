@@ -6,38 +6,34 @@ import Tutorial_tictactoe from "./Tutorial_tictactoe";
 import Home from "./Home";
 import { render } from '@testing-library/react';
 
+//MUI Library imports
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {ButtonAppBar} from './components/mui';
+import CssBaseline from '@mui/material/CssBaseline';
+
+
+const theme = createTheme();
+
 class App extends React.Component {
   render() {
     return (
-      // <div className="App">
-      //   <header className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <p>
-      //       Edit <code>src/App.js</code> and save to reload.
-      //     </p>
-      //     <a
-      //       className="App-link"
-      //       href="https://reactjs.org"
-      //       target="_blank"
-      //       rel="noopener noreferrer"
-      //     >
-      //       Learn React
-      //     </a>
-      //   </header>
-      // </div>
-      <BrowserRouter>
-        <div>
-          <h1>Home Page</h1>
-          <ul className="header">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/Tutorial_tictactoe">Tutorial Game</Link></li>
-          </ul>
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/Tutorial_tictactoe" element={<Tutorial_tictactoe/>} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline/>
+          <ButtonAppBar/>
+        <BrowserRouter>
+          <div>
+            <h1>Home Page</h1>
+            <ul className="header">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/Tutorial_tictactoe">Tutorial Game</Link></li>
+            </ul>
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/Tutorial_tictactoe" element={<Tutorial_tictactoe/>} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </ThemeProvider>
     );
   }
 }
