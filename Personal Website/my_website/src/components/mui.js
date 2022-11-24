@@ -18,8 +18,11 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Drawer from '@mui/material/Drawer';
+import { isOptionGroup } from '@mui/base';
+import { isDOMComponent } from 'react-dom/test-utils';
 
-export function ButtonAppBar() {
+export function DropButtonAppBar() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -72,42 +75,46 @@ export function ButtonAppBar() {
     );
   }
 
+export function DrawerAppBar({children}) {
+const [isOpen, setisOpen] = React.useState(false)
 
-//   export function BasicMenu() {
-//   const [anchorEl, setAnchorEl] = React.useState(null);
-//   const open = Boolean(anchorEl);
-//   const handleClick = (event) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-//   const handleClose = () => {
-//     setAnchorEl(null);
-//   };
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setisOpen(open)
+  };
 
-//   return (
-//     <div>
-//       <Button
-//         id="basic-button"
-//         aria-controls={open ? 'basic-menu' : undefined}
-//         aria-haspopup="true"
-//         aria-expanded={open ? 'true' : undefined}
-//         onClick={handleClick}
-//       >
-//         Dashboard
-//       </Button>
-//       <Menu
-//         id="basic-menu"
-//         anchorEl={anchorEl}
-//         open={open}
-//         onClose={handleClose}
-//         MenuListProps={{
-//           'aria-labelledby': 'basic-button',
-//         }}
-//       >
-//         <MenuItem onClick={handleClose}>Profile</MenuItem>
-//         <MenuItem onClick={handleClose}>My account</MenuItem>
-//         <MenuItem onClick={handleClose}>Logout</MenuItem>
-//       </Menu>
-//     </div>
-//   );
-// }
+  return (
+    <div>
+      <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+              id="basic-button"
 
+              onClick={toggleDrawer(true)}
+            >  
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+                open={isOpen}
+                onClose={toggleDrawer(false)}
+              >
+              <Box
+                role="presentation"
+                onClick={toggleDrawer(false)}
+                onKeyDown={toggleDrawer(false)}
+              >
+                {children}
+              </Box>
+            </Drawer>
+          </Toolbar>
+        </AppBar>
+    </div>
+  );
+}
