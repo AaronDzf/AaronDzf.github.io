@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+
+body {
+  font-family: "Lato", "Roboto", "sans-serif";
+}

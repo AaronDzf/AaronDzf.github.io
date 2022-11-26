@@ -14,20 +14,17 @@ const darkTheme = createTheme({
     MuiListItemText: {
       styleOverrides: {
         root: {
-          color: 'red',
-          textDecoration: 'none',
+          color: 'white',
           },
       },
     },
-    MuiLink: {
-      styleOverrides: {
-        root: {
-          color: 'inherit',
-          underline: 'none',
-        }
-      }
-    }
   },
+  typography: {
+    // fontFamily: [
+    //   'Roboto',
+    //   'Lato'
+    // ].join(',')
+  }
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -14,20 +14,21 @@ import { Container } from '@mui/material';
 import { Box, List, ListItem, ListItemIcon, ListItemButton, Divider, ListItemText } from '@mui/material';
 
 //Themeing and style
+const DrawerLinkStyle = {
+  color:'white',
+  textDecoration:'none',
+}
+
 
 const DrawerList = () => { 
   return (
     <div>
       <List>
         <ListItemButton>
-          <Link to="/">
-            <ListItemText primary = "Home"></ListItemText>
-          </Link>
+          <Link to="/" style={DrawerLinkStyle}>Home</Link>
         </ListItemButton>
         <ListItemButton>
-          <Link to="/Tutorial_tictactoe">
-            <ListItemText primary = "Learning Playground"></ListItemText>
-          </Link>
+          <Link to="/Tutorial_tictactoe" style={DrawerLinkStyle}>Learning Playground</Link>
         </ListItemButton>
       </List>
       <Divider />
@@ -56,7 +57,6 @@ class App extends React.Component {
           <DrawerList/>
         </DrawerAppBar>
           <Container maxWidth="sm">
-              <h1>Hi - Welcome to my playground!</h1>
               <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/Tutorial_tictactoe" element={<Tutorial_tictactoe/>} />
