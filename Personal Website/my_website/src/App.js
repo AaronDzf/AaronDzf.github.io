@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import React from 'react';
 import './App.css';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
-import Tutorial_tictactoe from "./Tutorial_tictactoe";
+import TicTacToe from "./TicTacToe";
 import Home from "./Home";
 import { render } from '@testing-library/react';
 
@@ -19,31 +19,32 @@ const DrawerLinkStyle = {
   textDecoration:'none',
 }
 
+const test = { }
 
 const DrawerList = () => { 
   return (
     <div>
       <List>
         <ListItemButton>
-          <Link to="/" style={DrawerLinkStyle}>Home</Link>
+          <Link to="/" class='DrawerList-Text'>Home</Link>
         </ListItemButton>
         <ListItemButton>
-          <Link to="/Tutorial_tictactoe" style={DrawerLinkStyle}>Learning Playground</Link>
+          <Link to="/TicTacToe" class='DrawerList-Text'>Tic Tac Toe</Link>
         </ListItemButton>
       </List>
       <Divider />
-      <List>
+      {/* <List>
         {['Other'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text}/>
             </ListItemButton>
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </div>
   );
 }
@@ -56,12 +57,14 @@ class App extends React.Component {
         <DrawerAppBar>
           <DrawerList/>
         </DrawerAppBar>
-          <Container maxWidth="sm">
+          <Container maxWidth="md">
+            <Box align="center">
               <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/Tutorial_tictactoe" element={<Tutorial_tictactoe/>} />
+                <Route path="/TicTacToe" element={<TicTacToe/>} />
               </Routes>
-            </Container>
+            </Box>
+          </Container>
       </BrowserRouter>
     );
   }

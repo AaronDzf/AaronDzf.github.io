@@ -21,6 +21,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import { isOptionGroup } from '@mui/base';
 import { isDOMComponent } from 'react-dom/test-utils';
+import {Paper, styled} from '@mui/material'
 
 export function DropButtonAppBar() {
 
@@ -117,4 +118,20 @@ const [isOpen, setisOpen] = React.useState(false)
         </AppBar>
     </div>
   );
+}
+
+export function StackItem({children}) {
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#ffc400',
+    ...theme.typography.body2,
+    padding: theme.spacing(0.75),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+
+  return (
+    <Item>
+      {children}
+    </Item>
+  )
 }

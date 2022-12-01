@@ -19,6 +19,8 @@ body {
 
 ol, ul {
   padding-left: 30px;
+  padding-top: 0px;
+  margin-top: 10px;
 }
 
 .board-row:after {

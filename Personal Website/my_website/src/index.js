@@ -5,32 +5,48 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from  '@mui/material/CssBaseline'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { amber } from '@mui/material/colors';
 
-const darkTheme = createTheme({
+const siteTheme = createTheme({
   palette: { 
-    mode: 'dark',
+    // mode: 'dark',
+    primary: {
+      main: '#121212',
+    },
+    secondary: {
+      main: amber[200],
+    },
+    background:{
+      default:'#00352c',
+      paper:'#121212',
+    },
+    text:{
+      primary: '#fff',
+    },
   },
   components: {
     MuiListItemText: {
       styleOverrides: {
         root: {
-          color: 'white',
+          color: '#fff',
           },
       },
     },
   },
   typography: {
-    // fontFamily: [
-    //   'Roboto',
-    //   'Lato'
-    // ].join(',')
+    fontFamily: [
+      'Lato',
+      'Roboto',
+      'Helvetica',
+      'Arial'
+    ].join(',')
   }
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={siteTheme}>
       <CssBaseline />
         <App />
     </ThemeProvider>

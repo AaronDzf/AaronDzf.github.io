@@ -37,9 +37,14 @@
   }
 }
 
-
-@import url('https://fonts.googleapis.com/css2?family=Lato');
-
-body {
-  font-family: "Lato", "Roboto", "sans-serif";
+a.icon:visited {
+  color: inherit;
 }
+
+.DrawerList-Text{
+  font-size: small;
+  color:white;
+  text-decoration: none;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Lato')
