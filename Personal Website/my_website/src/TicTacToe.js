@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './TicTacToe.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import root from './index.js'
 import { render } from '@testing-library/react';
-import {Button} from '@mui/material';
+import {Box, Button} from '@mui/material';
 import {Calculate, Sort} from '@mui/icons-material'
 
 /* This application was implemented using the React documentation on Tic Tac Toe with additional features including:
@@ -95,15 +95,6 @@ class Game extends React.Component {
         if (calculateWinner(squares) || squares[i]) {      
             return;    
         }
-        // } else if (calculateWinner(squares)) {
-        //     const winner = calculateWinner(squares)
-        //     console.log(winner)
-        //     const Selected = changeSelected(winner[1])
-        //     this.setState ({
-        //         isSelected: Selected
-        //     });
-        //     return;
-        // }
 
         squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
@@ -168,26 +159,26 @@ class Game extends React.Component {
         return (
         <div className="game">
             <div className="game-board">
-            <Board 
-                squares={current.squares}
-                onClick={(i) => this.handleClick(i)}
-                isSelected={Selected}
-                winningSquares={winner ? winner.line : noWinner}
-            />  
+                <Board 
+                    squares={current.squares}
+                    onClick={(i) => this.handleClick(i)}
+                    isSelected={Selected}
+                    winningSquares={winner ? winner.line : noWinner}
+                />  
             </div>
             <div className="game-info">
-            <div>
-                {status}
-                <Button 
-                variant="contained" 
-                startIcon={<Sort/>} 
-                onClick={() => this.sortHistory()}
-                size = "small"
-                sx={{mx:1,p:0.25}}>
-                    sort
-                </Button>
-            </div>    
-            <ol>{this.state.isDescending ? moves : moves.reverse()}</ol>
+                <div>
+                    {status}
+                    <Button 
+                    variant="contained" 
+                    startIcon={<Sort/>} 
+                    onClick={() => this.sortHistory()}
+                    size = "small"
+                    sx={{mx:1,p:0.25,backgroundColor:'primary.main',border:'solid white 2px', marginLeft:'10px'}}>
+                        sort
+                    </Button>
+                </div>    
+                <ol>{this.state.isDescending ? moves : moves.reverse()}</ol>
             </div>
         </div>
         );
@@ -230,17 +221,21 @@ function changeSelected(i) {
 }
 
 // Create component class for exporting and running the game
+const boxStyling = {width: 600, height: 400, backgroundColor: 'primary.main', position: 'relative'}
+
 class TicTacToe extends React.Component {
     render() {
-        return [
-            <h1>Tic Tac Toe Game</h1>,
-            <div style={{paddingLeft:'35%'}}>
-                <Game/>
-            </div>,
-            <p style={{fontStyle:'italic',fontSize:'50%'}}>
-                This game was implemented using documentation from the official React website as an introduction to the React framework
-            </p>,
-        ]
+        return (
+            <Box sx={boxStyling}>
+                <h1>Tic Tac Toe Game</h1>
+                <div style={{paddingLeft:'25%'}}>
+                    <Game/>
+                </div>
+                <p style={{fontStyle:'italic',fontSize:'50%', position:'absolute', bottom: 0, left:'50%', marginRight:'-50%',transform:'translate(-50%,-50%)'}}>
+                    This game was implemented using documentation from the official React website as an introduction to the React framework
+                </p>
+            </Box>
+        );
     }
   }
 

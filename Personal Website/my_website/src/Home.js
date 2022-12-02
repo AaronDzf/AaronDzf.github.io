@@ -5,6 +5,7 @@ import {Icon} from '@mui/material'
 import {Instagram, LinkedIn, GitHub} from '@mui/icons-material'
 import {Stack} from '@mui/system';
 import {StackItem} from './components/mui'
+import homePortrait from './images/MeMinion.png'
 
 const platformLinks = [
   {
@@ -26,7 +27,7 @@ const platformLinks = [
 
 const PlatformMapping = platformLinks.map((platform,index) =>
   <StackItem key={index}>
-    <a href={platform.link} class='icon'>
+    <a href={platform.link} className='icon'>
       <Icon>
         {platform.icon}
       </Icon>
@@ -38,8 +39,11 @@ const PlatformMapping = platformLinks.map((platform,index) =>
 class Home extends React.Component {
     render() {
       return (
-        <body>
-            <h1>Hello - Welcome to my playground!</h1>
+        <div>
+            <h1>Hello - Welcome to my portfolio!</h1>
+            <div>
+              <img src={homePortrait} height="350px" width="350px"/>
+            </div>
             <p>
               Who am i?
             </p>
@@ -52,7 +56,7 @@ class Home extends React.Component {
               Where am I?
             </p>
             <p style={{fontSize:'75%'}}>
-              This is my personal website which I will be sharing my experiences and personal projects on - i.e. my portfolio <br></br>
+              This is my personal website which I will be sharing my experiences and personal projects on<br></br>
               I have chosen this medium to learn to build a new skill (web development) but also has capacity to easily capture and display my work <br></br>
               Feel free to navigate through my projects using the sidebar toggled using the top left button or get to know me more through my platforms below
             </p>
@@ -63,8 +67,7 @@ class Home extends React.Component {
               >
               {PlatformMapping}
             </Stack>
-        </body>
-
+        </div>
       );
     }
   }

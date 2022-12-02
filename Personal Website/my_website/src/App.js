@@ -13,23 +13,19 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Container } from '@mui/material';
 import { Box, List, ListItem, ListItemIcon, ListItemButton, Divider, ListItemText } from '@mui/material';
 
-//Themeing and style
-const DrawerLinkStyle = {
-  color:'white',
-  textDecoration:'none',
-}
-
-const test = { }
 
 const DrawerList = () => { 
   return (
     <div>
       <List>
         <ListItemButton>
-          <Link to="/" class='DrawerList-Text'>Home</Link>
+          <Link to="/" className='DrawerList-Text'>Home</Link>
         </ListItemButton>
+      </List>
+      <Divider />
+      <List>
         <ListItemButton>
-          <Link to="/TicTacToe" class='DrawerList-Text'>Tic Tac Toe</Link>
+          <Link to="/TicTacToe" className='DrawerList-Text'>Tic Tac Toe</Link>
         </ListItemButton>
       </List>
       <Divider />

@@ -12,6 +12,7 @@ const siteTheme = createTheme({
     // mode: 'dark',
     primary: {
       main: '#121212',
+      light: '#fff'
     },
     secondary: {
       main: amber[200],
