@@ -1,24 +1,9 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
+import {AppBar, Button, Box, Toolbar, Typography} from '@mui/material';
+import {IconButton, Menu, MenuItem, Drawer} from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Drawer from '@mui/material/Drawer';
+import { NavigateBefore,NavigateNext } from '@mui/icons-material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { isOptionGroup } from '@mui/base';
 import { isDOMComponent } from 'react-dom/test-utils';
 import {Paper, styled} from '@mui/material'
@@ -134,4 +119,34 @@ export function StackItem({children}) {
       {children}
     </Item>
   )
+}
+
+export function GalleryButton(isNext, changeFigure) {
+
+  const GalleryButton = styled(IconButton)({
+    width: '44px',
+    height: '98%',
+    background: 'none',
+    borderRadius:0,
+    display: 'flex',
+    position:'absolute',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+    size:'large',
+    margin:0,
+  })
+
+  if (isNext) {
+    return (
+      <GalleryButton sx={{right:'-2.5%'}} onClick={changeFigure}>
+        <NavigateNext/>
+      </GalleryButton>
+    );
+  } else {
+    return (
+      <GalleryButton sx={{left:'5%'}} onClick={changeFigure}>
+        <NavigateBefore/>
+      </GalleryButton>
+    )
+  }
 }
