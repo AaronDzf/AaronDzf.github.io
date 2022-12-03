@@ -5,7 +5,7 @@ import {Icon} from '@mui/material'
 import {Instagram, LinkedIn, GitHub} from '@mui/icons-material'
 import {Stack} from '@mui/system';
 import {StackItem} from './components/mui'
-import homePortrait from './images/MeMinion.png'
+import homePortrait from './Assets/images/MeMinion.png'
 
 const platformLinks = [
   {

@@ -36,7 +36,7 @@ const siteTheme = createTheme({
   },
   typography: {
     fontFamily: [
-      'Lato',
+      'Oxygen',
       'Roboto',
       'Helvetica',
       'Arial'

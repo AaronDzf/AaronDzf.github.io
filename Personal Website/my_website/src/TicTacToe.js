@@ -221,13 +221,13 @@ function changeSelected(i) {
 }
 
 // Create component class for exporting and running the game
-const boxStyling = {width: 600, height: 400, backgroundColor: 'primary.main', position: 'relative'}
+const boxStyling = {width: 600, height: 400, backgroundColor: 'primary.main', position: 'relative', marginTop: '30px'}
 
 class TicTacToe extends React.Component {
     render() {
         return (
             <Box sx={boxStyling}>
-                <h1>Tic Tac Toe Game</h1>
+                <h1 style={{marginTop:0}}>Tic Tac Toe Game</h1>
                 <div style={{paddingLeft:'25%'}}>
                     <Game/>
                 </div>

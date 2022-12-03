@@ -2,8 +2,9 @@ import logo from './logo.svg';
 import React from 'react';
 import './App.css';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
-import TicTacToe from "./TicTacToe";
 import Home from "./Home";
+import TicTacToe from "./TicTacToe";
+import Severity from "./Severity"
 import { render } from '@testing-library/react';
 
 //MUI Library imports
@@ -27,6 +28,9 @@ const DrawerList = () => {
         <ListItemButton>
           <Link to="/TicTacToe" className='DrawerList-Text'>Tic Tac Toe</Link>
         </ListItemButton>
+        <ListItemButton>
+          <Link to="/Severity" className='DrawerList-Text'>Car Collision</Link>
+        </ListItemButton>
       </List>
       <Divider />
       {/* <List>
@@ -45,25 +49,23 @@ const DrawerList = () => {
   );
 }
 
-class App extends React.Component {
-
-  render() {
-    return (
-      <BrowserRouter>
-        <DrawerAppBar>
-          <DrawerList/>
-        </DrawerAppBar>
-          <Container maxWidth="md">
-            <Box align="center">
-              <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/TicTacToe" element={<TicTacToe/>} />
-              </Routes>
-            </Box>
-          </Container>
-      </BrowserRouter>
-    );
-  }
+function App () {
+  return (
+    <BrowserRouter>
+      <DrawerAppBar>
+        <DrawerList/>
+      </DrawerAppBar>
+        <Container maxWidth="l">
+          <Box align="center">
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/TicTacToe" element={<TicTacToe/>} />
+              <Route path="/Severity" element={<Severity/>} />
+            </Routes>
+          </Box>
+        </Container>
+    </BrowserRouter>
+  );
 }
 
 export default App;
