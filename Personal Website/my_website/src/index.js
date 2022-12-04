@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from  '@mui/material/CssBaseline'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { amber } from '@mui/material/colors';
+
 
 const siteTheme = createTheme({
   palette: { 
@@ -18,7 +18,7 @@ const siteTheme = createTheme({
       main: '#ffa000',
     },
     background:{
-      default:'#00352c',
+      // default: '#00352C',
       paper:'#121212',
     },
     text:{
@@ -26,6 +26,13 @@ const siteTheme = createTheme({
     },
   },
   components: {
+    MuiCssBaseline:{
+      styleOverrides:{
+        body:{
+          backgroundImage: 'url(/background.png)',
+        }
+      }
+    },
     MuiListItemText: {
       styleOverrides: {
         root: {
@@ -48,7 +55,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={siteTheme}>
-      <CssBaseline />
+      <CssBaseline/>
         <App />
     </ThemeProvider>
   </React.StrictMode>

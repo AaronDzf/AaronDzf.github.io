@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
-import {Icon} from '@mui/material'
+import {SvgIcon} from '@mui/material'
 import {Instagram, LinkedIn, GitHub} from '@mui/icons-material'
 import {Stack} from '@mui/system';
 import {StackItem} from './components/mui'
@@ -28,9 +28,9 @@ const platformLinks = [
 const PlatformMapping = platformLinks.map((platform,index) =>
   <StackItem key={index}>
     <a href={platform.link} className='icon'>
-      <Icon>
+      <SvgIcon sx={{mt:'2px'}}>
         {platform.icon}
-      </Icon>
+      </SvgIcon>
     </a>
   </StackItem>
   );

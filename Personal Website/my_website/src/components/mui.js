@@ -109,7 +109,7 @@ export function StackItem({children}) {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#ffc400',
     ...theme.typography.body2,
-    padding: theme.spacing(0.75),
+    padding: theme.spacing(0.5),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));
