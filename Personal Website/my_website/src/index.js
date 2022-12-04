@@ -9,13 +9,13 @@ import { amber } from '@mui/material/colors';
 
 const siteTheme = createTheme({
   palette: { 
-    // mode: 'dark',
+    type: 'dark',
     primary: {
       main: '#121212',
-      light: '#fff'
+      dark: '#737373',
     },
     secondary: {
-      main: amber[200],
+      main: '#ffa000',
     },
     background:{
       default:'#00352c',
