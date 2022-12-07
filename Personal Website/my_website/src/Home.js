@@ -6,6 +6,7 @@ import {Instagram, LinkedIn, GitHub} from '@mui/icons-material'
 import {Stack} from '@mui/system';
 import {StackItem} from './components/mui'
 import homePortrait from './Assets/images/MeMinion.png'
+import TextAnimation from './components/animation';
 
 const platformLinks = [
   {
@@ -41,7 +42,7 @@ class Home extends React.Component {
     render() {
       return (
         <div>
-            <Typography variant="h2" sx={textStyle}>Hello</Typography>
+            <TextAnimation/>
             <div>
               <img src={homePortrait} height="350px" width="350px"/>
             </div>

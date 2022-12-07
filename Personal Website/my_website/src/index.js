@@ -37,6 +37,7 @@ const siteTheme = createTheme({
       styleOverrides:{
         body:{
           backgroundImage: 'url(/background.png)',
+          //backgroundColor: '#800020'
         }
       }
     },
