@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, Paper, styled, Container} from '@mui/material'
+import {Box, Button, Paper, styled, Container, Typography} from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import './App.css'
 import { GalleryButton } from './components/mui';
@@ -11,13 +11,14 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#737373',
+    backgroundColor: theme.palette.primary.dark,
     ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
+    padding: theme.spacing(2),
     color: theme.palette.text.primary,
     fontWeight: 'Medium',
     position: 'relative',
+    width: '100%',
+    height: '100%',
   }));
   
 // pdf-react viewer configs
@@ -39,7 +40,7 @@ function importFigures(r) {
 const images = importFigures(require.context('./Assets/images/', false, /^(?:.*\/)?CC_Figure[^\/]*\.jpg/));
 console.log(images["CC_Figure1.jpg"])
 
-function Severity () {
+function Exollision () {
 
     // pdf viewer generator
     const [numPages, setNumPages] = useState(null);
@@ -98,7 +99,7 @@ function Severity () {
     const FigureElements = (index) => {
         const FigureString = "CC_Figure" + index + ".jpg"
         return (
-            <img src={images[FigureString]} alt="" width='450px' style={{display:'block',margin:0}}/>
+            <img src={images[FigureString]} alt="" width='450px' style={{display:'flex',margin:0, border:'2px solid black'}}/>
         );
     }
 
@@ -108,7 +109,7 @@ function Severity () {
             <Container maxWidth="lg" sx={{mt:4,mb:4}}>
                 <Grid2 container spacing = {2}>
                     <Grid2 xs={12} md={12}>
-                        <h2 className='Project-Title'>Review on Severity of Vehicular Collisions</h2>
+                        <h2 className='Project-Title'>Exploring the Severity of Vehicular Collisions</h2>
                     </Grid2>
                     <Grid2 xs={12} md={7}>
                         <Item>
@@ -116,17 +117,19 @@ function Severity () {
                         </Item>
                     </Grid2>
                     <Grid2 container direction="column" md={5}>
-                        <Grid2 xs={12} md={12}>
+                        <Grid2 xs={12}>
                             <Item>
-                                Summary <br></br>
+                                <Typography variant="h5">Summary</Typography>
+                                <Typography variant="body2">
                                 This paper was written for coursework applying data mining and machine learning introductory techniques.
                                 The topic is an investigation on the severity of vehicular collisions in Canada &#40;STATSCAN, 2017&#41;.
                                 A variety of factors were compared including time, weather conditions, parties involved, collision type,
                                 road type, intersection, etc. I primarily worked on exploratory data analysis and fitting a logistic 
                                 regression model to identify key factors in severe collisions.
+                                </Typography>
                             </Item>
                         </Grid2>
-                        <Grid2 xs={12} md={12}>
+                        <Grid2 xs={12}>
                             <Item>
                                 {FigureElements(topFigure)}
                                 {FigureElements(botFigure)}
@@ -143,4 +146,4 @@ function Severity () {
 }
 
 
-export default Severity;
+export default Exollision;

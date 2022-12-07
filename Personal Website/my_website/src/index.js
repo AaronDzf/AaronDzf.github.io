@@ -6,6 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import CssBaseline from  '@mui/material/CssBaseline'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
+const fontList = [
+  'Inconsolata',
+  'Space Mono',
+  'Courier New',
+]
 
 const siteTheme = createTheme({
   palette: { 
@@ -16,15 +21,17 @@ const siteTheme = createTheme({
     },
     secondary: {
       main: '#ffa000',
+      light: '#ffc400',
     },
     background:{
-      // default: '#00352C',
       paper:'#121212',
     },
     text:{
       primary: '#fff',
+      secondary: '#121212'
     },
   },
+  spacing: 4,
   components: {
     MuiCssBaseline:{
       styleOverrides:{
@@ -42,13 +49,12 @@ const siteTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: [
-      'Oxygen',
-      'Roboto',
-      'Helvetica',
-      'Arial'
-    ].join(',')
-  }
+    fontFamily: fontList.join(','),
+    gutterbottom: true,
+    h3: {
+      fontFamily: fontList.slice(1,3).join(','),
+    }
+  },
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -58,6 +64,7 @@ root.render(
       <CssBaseline/>
         <App />
     </ThemeProvider>
+    {console.log([fontList.slice(1,3)].join(','))}
   </React.StrictMode>
 );
 

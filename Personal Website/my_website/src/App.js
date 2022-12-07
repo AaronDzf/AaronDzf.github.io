@@ -4,7 +4,7 @@ import './App.css';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import Home from "./Home";
 import TicTacToe from "./TicTacToe";
-import Severity from "./Severity"
+import Exollision from './Exollision';
 import { render } from '@testing-library/react';
 
 //MUI Library imports
@@ -29,22 +29,10 @@ const DrawerList = () => {
           <Link to="/TicTacToe" className='DrawerList-Text'>Tic Tac Toe</Link>
         </ListItemButton>
         <ListItemButton>
-          <Link to="/Severity" className='DrawerList-Text'>Car Collision</Link>
+          <Link to="/Exollision" className='DrawerList-Text'>Exollision</Link>
         </ListItemButton>
       </List>
       <Divider />
-      {/* <List>
-        {['Other'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text}/>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List> */}
     </div>
   );
 }
@@ -56,11 +44,11 @@ function App () {
         <DrawerList/>
       </DrawerAppBar>
         <Container maxWidth="l">
-          <Box align="center">
+          <Box align="center" margin={'1%'}>
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/TicTacToe" element={<TicTacToe/>} />
-              <Route path="/Severity" element={<Severity/>} />
+              <Route path="/Exollision" element={<Exollision/>} />
             </Routes>
           </Box>
         </Container>

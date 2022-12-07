@@ -7,6 +7,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { isOptionGroup } from '@mui/base';
 import { isDOMComponent } from 'react-dom/test-utils';
 import {Paper, styled} from '@mui/material'
+import { palette } from '@mui/system';
+import { useTheme } from '@emotion/react';
 
 export function DropButtonAppBar() {
 
@@ -74,15 +76,14 @@ const [isOpen, setisOpen] = React.useState(false)
   return (
     <div>
       <AppBar position="static">
-          <Toolbar>
+          <Toolbar sx={{display:'flex', justifyContent:"space-between"}}>
             <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
               id="basic-button"
-
+              position="absolute"
               onClick={toggleDrawer(true)}
             >  
               <MenuIcon />
@@ -99,6 +100,8 @@ const [isOpen, setisOpen] = React.useState(false)
                 {children}
               </Box>
             </Drawer>
+            <Typography variant="h3" style={{width:'100%', textAlign:'center'}}>AARON DAI</Typography>
+            <MenuIcon color='primary' sx={{margin:'12px'}}/>
           </Toolbar>
         </AppBar>
     </div>
@@ -107,9 +110,9 @@ const [isOpen, setisOpen] = React.useState(false)
 
 export function StackItem({children}) {
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#ffc400',
+    backgroundColor: theme.palette.secondary.light,
     ...theme.typography.body2,
-    padding: theme.spacing(0.5),
+    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));

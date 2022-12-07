@@ -101,9 +101,13 @@ a.icon:visited {
 }
 
 .pdfDocument {
-  position: relative;
-  background-color: white;
+  position: absolute;
+  background-color: none;
+  top:50%;
+  left:50%;
+  transform: translateX(-50%) translateY(-50%);
   box-shadow: 0 30px 40px 0 rgba(16, 36, 94, 0.2);
+  border: solid rgba(0, 0, 0, 0.5);
 }
 
 .pdfDocument:hover .page-controls{

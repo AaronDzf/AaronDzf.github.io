@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './TicTacToe.css';
 import reportWebVitals from './reportWebVitals';
-import {Box, Button, Paper} from '@mui/material';
+import {Box, Button, Paper, Typography} from '@mui/material';
 import {Calculate, Sort} from '@mui/icons-material'
 
 /* This application was implemented using the React documentation on Tic Tac Toe with additional features including:
@@ -166,7 +166,7 @@ class Game extends React.Component {
                 />  
             </div>
             <div className="game-info">
-                <div style={{position:'relative', textAlign:'left', paddingLeft:'10px'}}>
+                <div style={{position:'relative', textAlign:'left', paddingLeft:15}}>
                     <Paper
                         variant="outlined"
                         sx={{mx:1,px:0.5,py:0.25, width:'120px', height:'28px',border:'solid white 1px',
@@ -251,12 +251,12 @@ class TicTacToe extends React.Component {
     render() {
         return (
             <Box sx={boxStyling}>
-                <h1 style={{marginTop:0}}>Have a Gander</h1>
+                <Typography variant='h3' sx={{m:3}}>X or O?</Typography>
                 <div style={{paddingLeft:'25%'}}>
                     <Game/>
                 </div>
                 <p style={{fontStyle:'italic',fontSize:'50%', position:'absolute', bottom: 0, left:'50%', marginRight:'-50%',transform:'translate(-50%,-50%)'}}>
-                    This game is an extension of the Tic Tac Toe documentation from REACT
+                    This game is an extension of the Tic Tac Toe documentation from React
                 </p>
             </Box>
         );
