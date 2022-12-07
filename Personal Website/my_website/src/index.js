@@ -40,17 +40,9 @@ const siteTheme = createTheme({
         }
       }
     },
-    MuiListItemText: {
-      styleOverrides: {
-        root: {
-          color: '#fff',
-          },
-      },
-    },
   },
   typography: {
     fontFamily: fontList.join(','),
-    gutterbottom: true,
     h3: {
       fontFamily: fontList.slice(1,3).join(','),
     }

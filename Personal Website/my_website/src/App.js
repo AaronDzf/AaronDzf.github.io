@@ -11,7 +11,7 @@ import { render } from '@testing-library/react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {DrawerAppBar} from './components/mui';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { Box, List, ListItem, ListItemIcon, ListItemButton, Divider, ListItemText } from '@mui/material';
 
 
@@ -20,16 +20,25 @@ const DrawerList = () => {
     <div>
       <List>
         <ListItemButton>
-          <Link to="/" className='DrawerList-Text'>Home</Link>
+          <Link to="/" className='DrawerList-Text'>
+            <Typography variant="h4">Home</Typography> 
+          </Link>
         </ListItemButton>
       </List>
       <Divider />
       <List>
+        <ListItem sx={{paddingBottom:0}}>
+          <Typography variant="subtitle1">Projects</Typography>
+        </ListItem>
         <ListItemButton>
-          <Link to="/TicTacToe" className='DrawerList-Text'>Tic Tac Toe</Link>
+          <Link to="/Exollision" className='DrawerList-Text'>
+            <Typography variant="h4">Exollision</Typography>
+          </Link>
         </ListItemButton>
         <ListItemButton>
-          <Link to="/Exollision" className='DrawerList-Text'>Exollision</Link>
+          <Link to="/TicTacToe" className='DrawerList-Text'>
+            <Typography variant="h4">TicTacToe</Typography>
+          </Link>
         </ListItemButton>
       </List>
       <Divider />
