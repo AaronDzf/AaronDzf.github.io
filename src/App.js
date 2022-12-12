@@ -20,7 +20,7 @@ const DrawerList = () => {
     <div>
       <List>
         <ListItemButton>
-          <Link to="/" className='DrawerList-Text'>
+          <Link to="/Development" className='DrawerList-Text'>
             <Typography variant="h4">Home</Typography> 
           </Link>
         </ListItemButton>
@@ -55,7 +55,7 @@ function App () {
         <Container maxWidth="l">
           <Box align="center" margin={'1%'}>
             <Routes>
-              <Route path="/" element={<Home/>}/>
+              <Route path="/Development" element={<Home/>}/>
               <Route path="/TicTacToe" element={<TicTacToe/>} />
               <Route path="/Severity-Predictor" element={<Predictor/>} />
             </Routes>
