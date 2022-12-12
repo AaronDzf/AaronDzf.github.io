@@ -4,9 +4,9 @@ import Grid2 from '@mui/material/Unstable_Grid2'
 import './App.css'
 import { GalleryButton } from './components/mui';
 import { NavigateBefore,NavigateNext } from '@mui/icons-material';
-
+import pdf from './Assets/files/SeverityReport.pdf'
 // imports for pdf viewer
-import { Document, Page} from 'react-pdf/dist/esm/entry.webpack';
+import {Document, Page} from 'react-pdf/dist/esm/entry.webpack';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
@@ -28,8 +28,6 @@ const options = {
   standardFontDataUrl: 'standard_fonts/',
 };
 
-const severityReport = '/SeverityReport.pdf';
-
 // image imports
 function importFigures(r) {
     let images = {}
@@ -38,7 +36,6 @@ function importFigures(r) {
 }
 
 const images = importFigures(require.context('./Assets/images/', false, /^(?:.*\/)?CC_Figure[^\/]*\.jpg/));
-console.log(images["CC_Figure1.jpg"])
 
 function Predictor () {
 
@@ -62,7 +59,7 @@ function Predictor () {
         return (
             <div>
                 <Document 
-                    file={severityReport} 
+                    file={pdf} 
                     onLoadSuccess={onDocumentLoadSuccess} 
                     options={options}
                     className='pdfDocument'
@@ -93,7 +90,6 @@ function Predictor () {
     const goToNextFigure = () => {
         setTopFigure(topFigure + 2 > gallerySize ? topFigure : topFigure + 2);
         setBotFigure(botFigure + 2 > gallerySize ? botFigure : botFigure + 2);
-        console.log(gallerySize)
     };
     
     const FigureElements = (index) => {

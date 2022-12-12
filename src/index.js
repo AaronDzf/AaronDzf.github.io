@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from  '@mui/material/CssBaseline'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import background from './Assets/images/background.png'
 
 const fontList = [
   'Inconsolata',
@@ -36,10 +37,9 @@ const siteTheme = createTheme({
     MuiCssBaseline:{
       styleOverrides:{
         body:{
-          backgroundImage: 'url(/background.png)',
-          //backgroundColor: '#800020'
+          backgroundImage:  `url(${background})`
         }
-      }
+      },
     },
   },
   typography: {
