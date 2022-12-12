@@ -1,7 +1,7 @@
 {
   "name": "my_website",
   "version": "0.1.0",
-  "homepage": "https://aarondzf.github.io/",
+  "homepage": "https://aarondzf.github.io/Development",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -20,8 +20,6 @@
   },
   "scripts": {
     "copy-worker": "node ./Assets/scripts/copy-worker.js",
-    "copy-cmaps": "node ./scripts/copy-cmaps.js",
-    "copy-standard-fonts": "node ./scripts/copy-standard-fonts.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
@@ -48,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "gh-pages": "^4.0.0"
   }
 }
