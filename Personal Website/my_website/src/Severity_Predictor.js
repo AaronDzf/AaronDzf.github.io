@@ -40,7 +40,7 @@ function importFigures(r) {
 const images = importFigures(require.context('./Assets/images/', false, /^(?:.*\/)?CC_Figure[^\/]*\.jpg/));
 console.log(images["CC_Figure1.jpg"])
 
-function Exollision () {
+function Predictor () {
 
     // pdf viewer generator
     const [numPages, setNumPages] = useState(null);
@@ -124,8 +124,8 @@ function Exollision () {
                                 This paper was written for coursework applying data mining and machine learning introductory techniques.
                                 The topic is an investigation on the severity of vehicular collisions in Canada &#40;STATSCAN, 2017&#41;.
                                 A variety of factors were compared including time, weather conditions, parties involved, collision type,
-                                road type, intersection, etc. I primarily worked on exploratory data analysis and fitting a logistic 
-                                regression model to identify key factors in severe collisions.
+                                road type, intersection, etc. I primarily worked on exploratory data analysis and building a logistic 
+                                regression model to identify key factors in predicting severity of a collision.
                                 </Typography>
                             </Item>
                         </Grid2>
@@ -146,4 +146,4 @@ function Exollision () {
 }
 
 
-export default Exollision;
+export default Predictor;

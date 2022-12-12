@@ -4,7 +4,7 @@ import './App.css';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import Home from "./Home";
 import TicTacToe from "./TicTacToe";
-import Exollision from './Exollision';
+import Predictor from './Severity_Predictor';
 import { render } from '@testing-library/react';
 
 //MUI Library imports
@@ -31,13 +31,13 @@ const DrawerList = () => {
           <Typography variant="subtitle1">Projects</Typography>
         </ListItem>
         <ListItemButton>
-          <Link to="/Exollision" className='DrawerList-Text'>
-            <Typography variant="h4">Exollision</Typography>
+          <Link to="/Severity-Predictor" className='DrawerList-Text'>
+            <Typography variant="h4">Severity Predictor</Typography>
           </Link>
         </ListItemButton>
         <ListItemButton>
           <Link to="/TicTacToe" className='DrawerList-Text'>
-            <Typography variant="h4">TicTacToe</Typography>
+            <Typography variant="h4">Tic Tac Toe</Typography>
           </Link>
         </ListItemButton>
       </List>
@@ -57,7 +57,7 @@ function App () {
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/TicTacToe" element={<TicTacToe/>} />
-              <Route path="/Exollision" element={<Exollision/>} />
+              <Route path="/Severity-Predictor" element={<Predictor/>} />
             </Routes>
           </Box>
         </Container>
