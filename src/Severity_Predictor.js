@@ -109,7 +109,7 @@ function Predictor () {
                     </Grid2>
                     <Grid2 xs={12} md={7}>
                         <Item>
-                            {pdfReport(severityReport)}
+                            {pdfReport(pdf)}
                         </Item>
                     </Grid2>
                     <Grid2 container direction="column" md={5}>
