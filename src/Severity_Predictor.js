@@ -5,10 +5,17 @@ import './App.css'
 import { GalleryButton } from './components/mui';
 import { NavigateBefore,NavigateNext } from '@mui/icons-material';
 import pdf from './Assets/files/SeverityReport.pdf'
-// imports for pdf viewer
+
+
 import {Document, Page} from 'react-pdf/dist/esm/entry.webpack';
+
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
+// imports for pdf viewer
+// import { Document, Page } from 'react-pdf';
+// import { pdfjs } from 'react-pdf';
+// pdfjs.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js';
+
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.primary.dark,
@@ -27,6 +34,8 @@ const options = {
   cMapPacked: true,
   standardFontDataUrl: 'standard_fonts/',
 };
+
+const pdfDoc = '/SeverityReport.pdf'
 
 // image imports
 function importFigures(r) {
@@ -59,7 +68,7 @@ function Predictor () {
         return (
             <div>
                 <Document 
-                    file={pdf} 
+                    file={pdfDoc} 
                     onLoadSuccess={onDocumentLoadSuccess} 
                     options={options}
                     className='pdfDocument'
@@ -109,7 +118,7 @@ function Predictor () {
                     </Grid2>
                     <Grid2 xs={12} md={7}>
                         <Item>
-                            {pdfReport(pdf)}
+                            {pdfReport(pdfDoc)}
                         </Item>
                     </Grid2>
                     <Grid2 container direction="column" md={5}>
