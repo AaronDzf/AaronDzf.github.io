@@ -37,6 +37,13 @@
   }
 }
 
+section {
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+
 a.icon:visited {
   color: inherit;
 }
@@ -45,19 +52,6 @@ a.icon:visited {
   font-size: large;
   color:white;
   text-decoration: none;
-}
-
-.Project-Box{
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-  align-self: center;
-  background-color: #121212;
-  width:1200px;
-  height:auto;
-  position: relative;
-  margin-top: 30px;
-  margin-bottom: 30px;
 }
 
 .Project-Title{

@@ -4,6 +4,7 @@ import './TicTacToe.css';
 import reportWebVitals from './reportWebVitals';
 import {Box, Button, Paper, Typography} from '@mui/material';
 import {Calculate, Sort} from '@mui/icons-material'
+import { BoxStyling } from './components/mui';
 
 /* This application was implemented using the React documentation on Tic Tac Toe with additional features including:
 / 1. Location display in the history list in the (column, row) format
@@ -226,14 +227,14 @@ function changeSelected(i) {
 }
 
 // Component stylings
-const boxStyling = {width: 800, 
-    height: 600, 
-    backgroundColor: 'primary.main', 
-    position: 'relative', 
-    marginTop: '30px', 
-    borderRadius: 1, 
-    boxShadow: "3px 3px 3px #b37100" 
-};
+// const boxStyling = {width: 800, 
+//     height: 600, 
+//     backgroundColor: 'primary.main', 
+//     position: 'relative', 
+//     marginTop: '30px', 
+//     borderRadius: 1, 
+//     boxShadow: "3px 3px 3px #b37100" 
+// };
 
 const HistoryButton = {
     position: 'relative',
@@ -250,7 +251,7 @@ const HistoryButton = {
 class TicTacToe extends React.Component {
     render() {
         return (
-            <Box sx={boxStyling}>
+            <BoxStyling width='800px' height='600px'>
                 <Typography variant='h3' sx={{m:3}}>X or O?</Typography>
                 <div style={{paddingLeft:'25%'}}>
                     <Game/>
@@ -258,7 +259,7 @@ class TicTacToe extends React.Component {
                 <p style={{fontStyle:'italic',fontSize:'50%', position:'absolute', bottom: 0, left:'50%', marginRight:'-50%',transform:'translate(-50%,-50%)'}}>
                     This game is an extension of the Tic Tac Toe documentation from React
                 </p>
-            </Box>
+            </BoxStyling>
         );
     }
   }

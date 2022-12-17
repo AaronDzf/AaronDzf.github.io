@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Box, Button, Paper, styled, Container, Typography} from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import './App.css'
-import { GalleryButton } from './components/mui';
+import { GalleryButton, BoxStyling } from './components/mui';
 import { NavigateBefore,NavigateNext } from '@mui/icons-material';
 import pdfDoc from './Assets/files/SeverityReport.pdf'
 
@@ -109,7 +109,7 @@ function Predictor () {
 
     // html elements
     return(
-        <Box className='Project-Box'>
+        <BoxStyling width='90%' height='100%' display='flex'>
             <Container maxWidth="lg" sx={{mt:4,mb:4}}>
                 <Grid2 container spacing = {2}>
                     <Grid2 xs={12} md={12}>
@@ -145,7 +145,7 @@ function Predictor () {
 
                 </Grid2>
             </Container>
-        </Box>
+        </BoxStyling>
     );
 }
 
