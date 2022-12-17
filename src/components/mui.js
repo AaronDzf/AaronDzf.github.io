@@ -9,6 +9,7 @@ import { isDOMComponent } from 'react-dom/test-utils';
 import {Paper, styled} from '@mui/material'
 import { palette } from '@mui/system';
 import { useTheme } from '@emotion/react';
+import { alignProperty } from '@mui/material/styles/cssUtils';
 
 export function DropButtonAppBar() {
 
@@ -152,4 +153,27 @@ export function GalleryButton(isNext, changeFigure) {
       </GalleryButton>
     )
   }
+}
+
+export function BoxStyling(props) {
+  const BoxComponent = styled(Box)(({theme}) => ({
+    width: props.width,
+    height: props.height,
+    display: props.display,
+    padding: props.padding,
+    backgroundColor: theme.palette.primary.main, 
+    position: 'relative', 
+    marginTop: '30px',
+    marginBottom: '30px',
+    borderRadius: 1, 
+    boxShadow: "3px 3px 3px #b37100",
+    justifyContent: 'center',
+    alignProperty: 'center',
+  }));
+
+  return (
+    <BoxComponent>
+      {props.children}
+    </BoxComponent>
+  )
 }
