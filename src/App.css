@@ -43,6 +43,9 @@ section {
   align-items: center;
 }
 
+section#front {
+  margin-top: 84px;
+}
 
 a.icon:visited {
   color: inherit;
@@ -52,6 +55,7 @@ a.icon:visited {
   font-size: large;
   color:white;
   text-decoration: none;
+  width: 100%;
 }
 
 .Project-Title{

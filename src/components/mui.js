@@ -4,7 +4,7 @@ import {IconButton, Menu, MenuItem, Drawer} from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavigateBefore,NavigateNext } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { isOptionGroup } from '@mui/base';
+import { ClickAwayListener, isOptionGroup } from '@mui/base';
 import { isDOMComponent } from 'react-dom/test-utils';
 import {Paper, styled} from '@mui/material'
 import { palette } from '@mui/system';
@@ -76,33 +76,24 @@ const [isOpen, setisOpen] = React.useState(false)
 
   return (
     <div>
-      <AppBar position="static">
-          <Toolbar sx={{display:'flex', justifyContent:"space-between"}}>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              id="basic-button"
-              position="absolute"
-              onClick={toggleDrawer(true)}
-            >  
-              <MenuIcon />
-            </IconButton>
+      <AppBar position="fixed" top='0' sx={{minHeight:'64px'}}>
+          <Toolbar 
+            sx={{":hover":{background:(theme) => theme.palette.primary.light, cursor: "pointer"}}} 
+            onClick={toggleDrawer(true)}>
             <Drawer
-                open={isOpen}
-                onClose={toggleDrawer(false)}
-              >
-              <Box
-                role="presentation"
-                onClick={toggleDrawer(false)}
-                onKeyDown={toggleDrawer(false)}
-              >
-                {children}
-              </Box>
+              open={isOpen}
+              onClose={toggleDrawer(false)}>
+              <ClickAwayListener onClickAway={toggleDrawer(false)}>
+                <Box
+                  role="presentation"
+                  onClick={toggleDrawer(false)}
+                  onKeyDown={toggleDrawer(false)}
+                >
+                  {children}
+                </Box>
+              </ClickAwayListener>
             </Drawer>
             <Typography variant="h3" style={{width:'100%', textAlign:'center'}}>AARON DAI</Typography>
-            <MenuIcon color='primary' sx={{margin:'12px'}}/>
           </Toolbar>
         </AppBar>
     </div>

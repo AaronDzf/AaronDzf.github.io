@@ -18,7 +18,7 @@ const siteTheme = createTheme({
     type: 'dark',
     primary: {
       main: '#121212',
-      dark: '#737373',
+      light: '#737373',
     },
     secondary: {
       main: '#ffa000',
