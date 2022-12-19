@@ -76,7 +76,7 @@ const [isOpen, setisOpen] = React.useState(false)
 
   return (
     <div>
-      <AppBar position="fixed" top='0' sx={{minHeight:'64px'}}>
+      <AppBar position="fixed" top='0' sx={{minHeight:'64px'}} id='app-bar'>
           <Toolbar 
             sx={{":hover":{background:(theme) => theme.palette.primary.light, cursor: "pointer"}}} 
             onClick={toggleDrawer(true)}>

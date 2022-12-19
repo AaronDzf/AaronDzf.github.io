@@ -39,11 +39,11 @@ function SplitText (text,role) {
 }
 
 //"animation-delay": (0.5 + index / 10) + "s"
-export default function TextBounce () {
+export default function TextBounce (props) {
 
     return (
-        <Typography variant="h1" sx = {{m: 6}}>
-            {SplitText("Hello","header")}
+        <Typography variant="h2" sx = {{m: 1}}>
+            {SplitText(props.text,"header")}
         </Typography>
     )
 }
