@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, Paper, styled, Container, Typography} from '@mui/material'
+import {Box, Button, Card, styled, Container, Typography, Table} from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import './App.css'
 import { GalleryButton, BoxStyling } from './components/mui';
@@ -15,16 +15,26 @@ import { pdfjs } from 'react-pdf';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.light,
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    color: theme.palette.text.primary,
-    fontWeight: 'Medium',
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-  }));
+function Item(props) {
+    const CardItem = styled(Card)(({ theme }) => ({
+        backgroundColor: theme.palette.primary.light,
+        ...theme.typography.body2,
+        padding: theme.spacing(2),
+        color: theme.palette.text.primary,
+        fontWeight: 'Medium',
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        minHeight: props.minHeight,
+        maxWidth: props.maxWidth,
+        }));
+
+    return (
+        <CardItem>
+            {props.children}
+        </CardItem>
+    );
+}
   
 // pdf-react viewer configs
 // const options = {
@@ -32,8 +42,6 @@ const Item = styled(Paper)(({ theme }) => ({
 //   cMapPacked: true,
 //   standardFontDataUrl: 'standard_fonts/',
 // };
-
-// const pdfDoc = '/SeverityReport.pdf'
 
 // image imports
 function importFigures(r) {
@@ -66,13 +74,13 @@ function Predictor () {
         return (
             <div>
                 <Document 
-                    file={pdfDoc} 
+                    file={filename} 
                     onLoadSuccess={onDocumentLoadSuccess}
                     onLoadError={console.error} 
                     // options={options}
                     className='pdfDocument'
                 >
-                    <Page pageNumber={pageNumber} style={{position:'relative'}}/>
+                    <Page pageNumber={pageNumber}/>
                     <div className="page-controls">
                         <button onClick={goToPrevPage}><NavigateBefore/></button>
                         <span>
@@ -107,22 +115,31 @@ function Predictor () {
         );
     }
 
+    // grid layout theme
+    // const gridTheme = createTheme({
+    //     breakpoints: {
+    //         values:{
+    //             test: 1000
+    //         }
+    //     }
+    // })   
+
     // html elements
     return(
         <BoxStyling width='90%' height='100%' display='flex'>
             <Container maxWidth="lg" sx={{mt:4,mb:4}}>
-                <Grid2 container spacing = {2}>
-                    <Grid2 xs={12} md={12}>
+                <Grid2 container spacing = {3}>
+                    <Grid2 xs={12}>
                         <h2 className='Project-Title'>Exploring the Severity of Vehicular Collisions</h2>
                     </Grid2>
-                    <Grid2 xs={12} md={7}>
-                        <Item>
+                    <Grid2 xs={12} lg={7}>
+                        <Item minHeight='839px'>
                             {pdfReport(pdfDoc)}
                         </Item>
                     </Grid2>
-                    <Grid2 container direction="column" md={5}>
+                    <Grid2 xs={12} lg={5} style={{padding:0}}>
                         <Grid2 xs={12}>
-                            <Item>
+                            <Item height='100%'>
                                 <Typography variant="h5">Summary</Typography>
                                 <Typography variant="body2">
                                 This paper was written for coursework applying data mining and machine learning introductory techniques.
@@ -134,7 +151,7 @@ function Predictor () {
                             </Item>
                         </Grid2>
                         <Grid2 xs={12}>
-                            <Item>
+                            <Item height='100%' maxWidth='483px'>
                                 {FigureElements(topFigure)}
                                 {FigureElements(botFigure)}
                                 {GalleryButton(false,goToPrevFigure)}

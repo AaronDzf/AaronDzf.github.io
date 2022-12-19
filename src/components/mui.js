@@ -133,13 +133,13 @@ export function GalleryButton(isNext, changeFigure) {
 
   if (isNext) {
     return (
-      <GalleryButton sx={{right:'-2.5%'}} onClick={changeFigure}>
+      <GalleryButton sx={{right:'-1%'}} onClick={changeFigure}>
         <NavigateNext/>
       </GalleryButton>
     );
   } else {
     return (
-      <GalleryButton sx={{left:'5%'}} onClick={changeFigure}>
+      <GalleryButton sx={{left:'8%'}} onClick={changeFigure}>
         <NavigateBefore/>
       </GalleryButton>
     )

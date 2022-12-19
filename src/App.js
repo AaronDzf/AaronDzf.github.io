@@ -53,7 +53,7 @@ function App () {
         <DrawerList/>
       </DrawerAppBar>
         <Container maxWidth="l" sx={{marginTop:'64px'}}>
-          <Box align="center" margin={'1%'}>
+          <Box align="center" sx={{margin:'5em 1em 2em 1em'}}>
             <Routes>
               <Route path="/Development" element={<Home/>}/>
               <Route path="/TicTacToe" element={<TicTacToe/>} />
