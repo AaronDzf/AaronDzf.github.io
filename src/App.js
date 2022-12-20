@@ -25,6 +25,11 @@ const DrawerList = () => {
             <Typography variant="h4">About Me</Typography> 
           </Link>
         </ListItemButton>
+        <ListItemButton>
+          <Link to="/Development#timeline" className='DrawerList-Text'>
+            <Typography variant="h4">Timeline</Typography> 
+          </Link>
+        </ListItemButton>
       </List>
       <Divider />
       <List>
@@ -54,8 +59,10 @@ function useScroll() {
     if (location.hash) {
         let header = document.getElementById('app-bar')
         let elem = document.getElementById(location.hash.slice(1))
+        console.log(elem)
         if (elem && header) {
-          let scrollY = elem.scrollHeight - header.scrollHeight
+          let scrollY = elem.offsetTop - header.scrollHeight
+          console.log(elem)
           window.scrollTo({top:scrollY,left:0, behavior:"smooth"})
         }
     } else {
@@ -76,6 +83,7 @@ function NavBar() {
       <Box align="center" sx={{margin:'5em 1em 2em 1em'}}>
         <Routes>
           <Route path="/Development" element={<Home/>}/>
+          <Route path="/Development" element={<Home/>}>{useEffect}</Route>
           <Route path="/Development" element={<Home/>}>{useEffect}</Route>
           <Route path="/TicTacToe" element={<TicTacToe/>} />
           <Route path="/Severity-Predictor" element={<Predictor/>} />

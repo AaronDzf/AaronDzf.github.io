@@ -3,7 +3,7 @@ import './App.css';
 import {SvgIcon, Typography, Container} from '@mui/material'
 import {Instagram, LinkedIn, GitHub} from '@mui/icons-material'
 import {Stack} from '@mui/system';
-import {StackItem, BoxStyling} from './components/mui'
+import {StackItem, BoxStyling,TimelineComponent} from './components/mui'
 import homePortrait from './Assets/images/MeMinion.png'
 import TextAnimation from './components/animation';
 
@@ -50,7 +50,7 @@ class Home extends React.Component {
             </div>
           </section>
           <section id='about-me'>
-            <BoxStyling width='75%' height='100%' padding='30px'>
+            <BoxStyling width='80%' height='100%' padding='30px'>
               <Container>
                 <Typography variant="h3">
                   Who am i?
@@ -75,6 +75,16 @@ class Home extends React.Component {
                 >
                 {PlatformMapping}
                 </Stack>
+              </Container>
+            </BoxStyling>
+          </section>
+          <section id="timeline">
+            <BoxStyling width='80%' height='100%' padding='30px'>
+              <Container>
+                <Typography variant="h3">
+                  Experience
+                </Typography>
+                <TimelineComponent/>
               </Container>
             </BoxStyling>
           </section>

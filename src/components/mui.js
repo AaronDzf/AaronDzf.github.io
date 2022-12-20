@@ -5,6 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavigateBefore,NavigateNext } from '@mui/icons-material';
 import { ClickAwayListener} from '@mui/base';
 import {Paper, styled} from '@mui/material'
+import {Timeline,TimelineItem,TimelineContent,TimelineSeparator,TimelineConnector,TimelineOppositeContent} from '@mui/lab'
 
 export function DropButtonAppBar() {
 
@@ -161,5 +162,91 @@ export function BoxStyling(props) {
     <BoxComponent>
       {props.children}
     </BoxComponent>
+  )
+}
+
+export function TimelineComponent() {
+
+  return (
+    <Timeline>
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body1">Research Assistant</Typography>
+          <Typography variant="body2">University of Waterloo</Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <Typography variant="h6">2017</Typography>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Typography variant="body1">Operational Support</Typography>
+          <Typography variant="body2">Lafarge</Typography>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body1">Program Support Assistant</Typography>
+          <Typography variant="body2">Ministry of Environment</Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <Typography variant="h6">2018</Typography>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body1">Master Data Analyst</Typography>
+          <Typography variant="body2">HubHead Corp</Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <Typography variant="h6">2019</Typography>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body1">Research Assistant</Typography>
+          <Typography variant="body2">University of Waterloo</Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <Typography variant="h6">2020</Typography>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body1">Associate Software Engineer</Typography>
+          <Typography variant="body2">BMO</Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <Typography variant="h6">2021</Typography>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Typography variant="body1">Consumer Insights Analyst</Typography>
+          <Typography variant="body2">Loblaws LLC</Typography>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body1">Graduated!</Typography>
+          <Typography variant="body2">University of Waterloo</Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <Typography variant="h6">2022</Typography>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+        </TimelineContent>
+      </TimelineItem>
+      <Typography variant="h6">2023</Typography>
+    </Timeline>
+    
   )
 }
