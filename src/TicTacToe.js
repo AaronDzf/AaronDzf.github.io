@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './TicTacToe.css';
-import reportWebVitals from './reportWebVitals';
-import {Box, Button, Paper, Typography} from '@mui/material';
-import {Calculate, Sort} from '@mui/icons-material'
+import {Button, Paper, Typography} from '@mui/material';
+import { Sort } from '@mui/icons-material'
 import { BoxStyling } from './components/mui';
 
 /* This application was implemented using the React documentation on Tic Tac Toe with additional features including:
@@ -89,7 +87,6 @@ class Game extends React.Component {
         const LocationHistory = this.state.LocationHistory.slice(0, this.state.stepNumber + 1);
         const Selected = changeSelected(i)
         
-        console.log(Selected)
         if (calculateWinner(squares) || squares[i]) {      
             return;    
         }
@@ -106,17 +103,23 @@ class Game extends React.Component {
         });
     }
 
-    jumpTo(step) {
-        const Location = this.state.LocationHistory[step]
+    jumpTo(move, step) {
+        const Location = this.state.LocationHistory[move]
         const Selected = changeSelected(Location)
 
         this.setState({
-        stepNumber: step,
-        xIsNext: (step % 2) === 0,
+        stepNumber: move,
+        xIsNext: (move % 2) === 0,
         isSelected: Selected,
         })
-        
     }
+
+    // updateBoard(step) {
+    //     // step.squares.forEach(square => {
+            
+    //     // })
+    //     this.state.current = step
+    // }
     
     sortHistory() {
         this.setState ({
@@ -126,20 +129,20 @@ class Game extends React.Component {
 
     render() {
         const history = this.state.history;
-        const current = history[history.length - 1];
+        const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
         const LocationHistory = this.state.LocationHistory;
         const Selected = this.state.isSelected;
         const noWinner = Array(9).fill(false)
-
+        
         const moves = history.map((step, move) => {
         const desc = move ?
             'Go to move #' + move + " (" + this.location(LocationHistory[move]) + ")" :
             'Go to game start';
-
+        
         return (
             <li key={move} style={{listStyle:'none'}}>
-                <Button sx={HistoryButton} variant="contained" onClick={() => {this.jumpTo(move)}}>
+                <Button sx={HistoryButton} variant="contained" onClick={() => {this.jumpTo(move, step)}}>
                     {desc}
                 </Button>
             </li>
@@ -217,7 +220,7 @@ function calculateWinner(squares) {
 // Generates a boolean array indicating the selected square on the board
 function changeSelected(i) {
     const selected = Array(9).fill(false);
-    console.log(i)
+
     if (Array.isArray(i)) {
         i.forEach(winner => selected[winner] = true)
     } else {
@@ -225,16 +228,6 @@ function changeSelected(i) {
     }
     return selected;
 }
-
-// Component stylings
-// const boxStyling = {width: 800, 
-//     height: 600, 
-//     backgroundColor: 'primary.main', 
-//     position: 'relative', 
-//     marginTop: '30px', 
-//     borderRadius: 1, 
-//     boxShadow: "3px 3px 3px #b37100" 
-// };
 
 const HistoryButton = {
     position: 'relative',
