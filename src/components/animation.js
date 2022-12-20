@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Typography, Box} from '@mui/material';
+import React from 'react';
+import { Typography} from '@mui/material';
 import { styled } from '@mui/material/styles'
 import { keyframes} from '@mui/system'
-import { useState } from 'react';
+
 
 const bounce = keyframes `
     0%   { transform: scale(1,1) translateY(0); }

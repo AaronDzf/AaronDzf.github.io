@@ -1,18 +1,14 @@
-import logo from './logo.svg';
 import {React, useEffect} from 'react';
 import './App.css';
 import {BrowserRouter, Link, Route, Routes, useLocation} from "react-router-dom";
 import Home from "./Home";
 import TicTacToe from "./TicTacToe";
 import Predictor from './Severity_Predictor';
-import { render } from '@testing-library/react';
 
 //MUI Library imports
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {DrawerAppBar} from './components/mui';
-import CssBaseline from '@mui/material/CssBaseline';
 import { Container, Typography } from '@mui/material';
-import { Box, List, ListItem, ListItemIcon, ListItemButton, Divider, ListItemText } from '@mui/material';
+import { Box, List, ListItem, ListItemButton, Divider} from '@mui/material';
 
 
 const DrawerList = () => { 

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import {SvgIcon, Typography, Container} from '@mui/material'
 import {Instagram, LinkedIn, GitHub} from '@mui/icons-material'
 import {Stack} from '@mui/system';
