@@ -25,11 +25,6 @@ const DrawerList = () => {
             <Typography variant="h4">About Me</Typography> 
           </Link>
         </ListItemButton>
-        <ListItemButton>
-          <Link to="/Development#timeline" className='DrawerList-Text'>
-            <Typography variant="h4">Timeline</Typography> 
-          </Link>
-        </ListItemButton>
       </List>
       <Divider />
       <List>
@@ -83,7 +78,6 @@ function NavBar() {
       <Box align="center" sx={{margin:'5em 1em 2em 1em'}}>
         <Routes>
           <Route path="/Development" element={<Home/>}/>
-          <Route path="/Development" element={<Home/>}>{useEffect}</Route>
           <Route path="/Development" element={<Home/>}>{useEffect}</Route>
           <Route path="/TicTacToe" element={<TicTacToe/>} />
           <Route path="/Severity-Predictor" element={<Predictor/>} />
