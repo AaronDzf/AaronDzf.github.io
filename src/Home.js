@@ -14,14 +14,14 @@ const platformLinks = [
     icon: <LinkedIn/>,
   },
   {
-    platform: 'Instagram',
-    link:'https://www.instagram.com/aairond/',
-    icon: <Instagram/>,
-  },
-  {
     platform: 'GitHub',
     link:'https://github.com/AaronDzf',
     icon: <GitHub/>,
+  },
+  {
+    platform: 'Instagram',
+    link:'https://www.instagram.com/aairond/',
+    icon: <Instagram/>,
   },
 ]
 
@@ -58,10 +58,11 @@ class Home extends React.Component {
                 <Typography variant="body1" sx={{m:5}}>
                   I am a newly graduated Management Engineering student from the University of Waterloo <br></br>
                   I currently have 2.5 years of co-op work experience across a variety of roles including operations, data analytics, and software engineering.
-                  I am passionate in applying data science and analytics to drive organizations in improving their products, clients, or operations decision making/strategies.
+                  I am passionate in applying data science and analytics to generate insights used to better decision making/strategies in organizations -
+                  whether it'd be products, clients or operations.
                 </Typography>
                 <Typography variant="h3" sx={{m:5}}>              
-                  Where am I?
+                  What is this?
                 </Typography>
                 <Typography variant="body1" sx={{m:5}}>
                   This is my personal website which I will be sharing my experiences and personal projects on<br></br>
@@ -72,17 +73,12 @@ class Home extends React.Component {
                 direction='row'
                 spacing={10}
                 justifyContent='center'
+                marginBottom={5}
                 >
                 {PlatformMapping}
                 </Stack>
-              </Container>
-            </BoxStyling>
-          </section>
-          <section id="timeline">
-            <BoxStyling width='80%' height='100%' padding='30px'>
-              <Container>
                 <Typography variant="h3">
-                  Experience
+                  Where have I been?
                 </Typography>
                 <TimelineComponent/>
               </Container>
