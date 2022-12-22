@@ -2,9 +2,9 @@ import {React, useEffect} from 'react';
 import './App.css';
 import {BrowserRouter, Link, Route, Routes, useLocation} from "react-router-dom";
 import Home from "./Home";
-import TicTacToe from "./TicTacToe";
-import Predictor from './Severity_Predictor';
-import IndicatorImg from './Assets/images/catpopover.png'
+import TicTacToe from "./tictactoe";
+import Predictor from './fatality-predictor';
+
 
 //MUI Library imports
 import {DrawerAppBar, DrawerItem} from './components/mui';
@@ -43,14 +43,14 @@ const DrawerList = () => {
           <Typography variant="subtitle1">Projects</Typography>
         </ListItem>
         <ListItemButton>
-          <Link to="/Severity-Predictor" className='DrawerList-Text'>
-            <DrawerItem variant="h4" text="Severity Predictor">
-              <PopoverItem variant="body1">Data mining report on the severity of vehicular collisions</PopoverItem>
+          <Link to="/fatality-predictor" className='DrawerList-Text'>
+            <DrawerItem variant="h4" text="Fatality Predictor">
+              <PopoverItem variant="body1">Data mining report on the fatality of vehicular collisions</PopoverItem>
             </DrawerItem>
           </Link>
         </ListItemButton>
         <ListItemButton>
-          <Link to="/TicTacToe" className='DrawerList-Text'>
+          <Link to="/tictactoe" className='DrawerList-Text'>
           <DrawerItem variant="h4" text="Tic-Tac-Toe">
               <PopoverItem variant="body1">A simple game of tictactoe</PopoverItem>
           </DrawerItem>
@@ -94,8 +94,8 @@ function NavBar() {
         <Routes>
           <Route path="/Development" element={<Home/>}/>
           <Route path="/Development" element={<Home/>}>{useEffect}</Route>
-          <Route path="/TicTacToe" element={<TicTacToe/>} />
-          <Route path="/Severity-Predictor" element={<Predictor/>} />
+          <Route path="/tictactoe" element={<TicTacToe/>} />
+          <Route path="/fatality-predictor" element={<Predictor/>} />
         </Routes>
       </Box>
     </Container>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, Card, styled, Container, Typography, Table} from '@mui/material'
+import {Card, styled, Container, Typography} from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import './App.css'
 import { GalleryButton, BoxStyling } from './components/mui';
@@ -179,7 +179,7 @@ function Predictor () {
             <Container maxWidth="lg" sx={{mt:4,mb:4}}>
                 <Grid2 container spacing = {3}>
                     <Grid2 xs={12}>
-                        <h2 className='Project-Title'>Exploring the Severity of Vehicular Collisions</h2>
+                        <h2 className='Project-Title'>Exploring the Fatality of Vehicular Collisions</h2>
                     </Grid2>
                     <Grid2 xs={12} lg={7}>
                         <Item minHeight='797px' minWidth='570px'>
@@ -191,9 +191,9 @@ function Predictor () {
                             <Item height='100%'>
                                 <Typography variant="h5">Summary</Typography>
                                 <Typography variant="body2">
-                                This academic coursework paper is an application of data mining techniques to investigate possible factors of severe 
+                                This academic coursework paper is an application of data mining techniques to investigate possible factors of fatality 
                                 accidents in vehicular collisions. Using a dataset from &#40;STATSCAN, 2017&#41;, A fitted logistic regression
-                                model was used to predict the severity, fataility of person&#40;s&#41;, of a collision based on significant factors 
+                                model was used to predict the fataility of person&#40;s&#41; in a collision based on significant factors 
                                 screened out after an intial exploratory analysis phase.
                                 </Typography>
                             </Item>
