@@ -23,14 +23,14 @@ const DrawerList = () => {
     <div>
       <List>
         <ListItemButton>
-          <Link to="/Development" className='DrawerList-Text'>
+          <Link to="/" className='DrawerList-Text'>
           <DrawerItem variant="h4" text="Home">
               <PopoverItem variant="body1">Moew</PopoverItem>
             </DrawerItem>
           </Link>
         </ListItemButton>
         <ListItemButton>
-          <Link to="/Development#about-me" className='DrawerList-Text'>
+          <Link to="/#about-me" className='DrawerList-Text'>
             <DrawerItem variant="h4" text="About Me">
               <PopoverItem variant="body1">Purr</PopoverItem>
             </DrawerItem>
@@ -92,8 +92,8 @@ function NavBar() {
     <Container maxWidth="l" sx={{marginTop:'64px'}}>
       <Box align="center" sx={{margin:'5em 1em 2em 1em'}}>
         <Routes>
-          <Route path="/Development" element={<Home/>}/>
-          <Route path="/Development" element={<Home/>}>{useEffect}</Route>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Home/>}>{useEffect}</Route>
           <Route path="/tictactoe" element={<TicTacToe/>} />
           <Route path="/fatality-predictor" element={<Predictor/>} />
         </Routes>

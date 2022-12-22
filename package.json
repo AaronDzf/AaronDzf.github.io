@@ -1,7 +1,7 @@
 {
   "name": "my_website",
   "version": "0.1.0",
-  "homepage": "https://aarondzf.github.io/Development",
+  "homepage": "https://aarondzf.github.io/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
