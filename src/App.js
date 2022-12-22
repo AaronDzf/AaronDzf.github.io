@@ -4,25 +4,36 @@ import {BrowserRouter, Link, Route, Routes, useLocation} from "react-router-dom"
 import Home from "./Home";
 import TicTacToe from "./TicTacToe";
 import Predictor from './Severity_Predictor';
+import IndicatorImg from './Assets/images/catpopover.png'
 
 //MUI Library imports
-import {DrawerAppBar} from './components/mui';
-import { Container, Typography } from '@mui/material';
+import {DrawerAppBar, DrawerItem} from './components/mui';
+import { Container, Typography,styled} from '@mui/material';
 import { Box, List, ListItem, ListItemButton, Divider} from '@mui/material';
 
 
-const DrawerList = () => { 
+const DrawerList = () => {
+
+  const PopoverItem = styled(Typography)(({theme}) => ({
+    background: theme.palette.secondary.dark,
+    padding: theme.spacing(2),
+  }));
+
   return (
     <div>
       <List>
         <ListItemButton>
           <Link to="/Development" className='DrawerList-Text'>
-            <Typography variant="h4">Home</Typography> 
+          <DrawerItem variant="h4" text="Home">
+              <PopoverItem variant="body1">Moew</PopoverItem>
+            </DrawerItem>
           </Link>
         </ListItemButton>
         <ListItemButton>
           <Link to="/Development#about-me" className='DrawerList-Text'>
-            <Typography variant="h4">About Me</Typography> 
+            <DrawerItem variant="h4" text="About Me">
+              <PopoverItem variant="body1">Purr</PopoverItem>
+            </DrawerItem>
           </Link>
         </ListItemButton>
       </List>
@@ -33,12 +44,16 @@ const DrawerList = () => {
         </ListItem>
         <ListItemButton>
           <Link to="/Severity-Predictor" className='DrawerList-Text'>
-            <Typography variant="h4">Severity Predictor</Typography>
+            <DrawerItem variant="h4" text="Severity Predictor">
+              <PopoverItem variant="body1">Data mining report on the severity of vehicular collisions</PopoverItem>
+            </DrawerItem>
           </Link>
         </ListItemButton>
         <ListItemButton>
           <Link to="/TicTacToe" className='DrawerList-Text'>
-            <Typography variant="h4">Tic Tac Toe</Typography>
+          <DrawerItem variant="h4" text="Tic-Tac-Toe">
+              <PopoverItem variant="body1">A simple game of tictactoe</PopoverItem>
+          </DrawerItem>
           </Link>
         </ListItemButton>
       </List>

@@ -119,3 +119,6 @@ a.icon:visited {
   transform: 'translateX(-50%) translateY(-50%)';
 }
 
+.drawer-indicator {
+  display: none;
+}

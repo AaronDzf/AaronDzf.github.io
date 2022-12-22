@@ -23,6 +23,7 @@ const siteTheme = createTheme({
     secondary: {
       main: '#ffa000',
       light: '#ffc400',
+      dark: '#b27000',
     },
     background:{
       paper:'#121212',

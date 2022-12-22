@@ -4,8 +4,9 @@ import {IconButton, Menu, MenuItem, Drawer} from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavigateBefore,NavigateNext } from '@mui/icons-material';
 import { ClickAwayListener} from '@mui/base';
-import {Paper, styled} from '@mui/material'
+import {Paper, styled, Popover} from '@mui/material'
 import {Timeline,TimelineItem,TimelineContent,TimelineSeparator,TimelineConnector,TimelineOppositeContent} from '@mui/lab'
+import IndicatorImg from '../Assets/images/catpopover.png'
 
 export function DropButtonAppBar() {
 
@@ -77,6 +78,11 @@ const [isOpen, setisOpen] = React.useState(false)
             sx={{":hover":{background:(theme) => theme.palette.primary.light, cursor: "pointer"}}} 
             onClick={toggleDrawer(true)}>
             <Drawer
+              PaperProps={{
+                sx: {
+                  overflowY:'visible'
+                }
+              }}
               open={isOpen}
               onClose={toggleDrawer(false)}>
               <ClickAwayListener onClickAway={toggleDrawer(false)}>
@@ -249,4 +255,61 @@ export function TimelineComponent() {
     </Timeline>
     
   )
+}
+
+export function DrawerItem(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isSelected, setIsSelected] = React.useState(false);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget)
+    setIsSelected(true)
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null)
+    setIsSelected(false)
+  };
+
+  const open = Boolean(anchorEl);
+  return (
+    <React.Fragment>
+      <Typography variant={props.variant}
+        aria-owns={open ? 'mouse-over-popover' : undefined}
+        aria-haspopup="true"
+        onMouseEnter={handlePopoverOpen}
+        onMouseLeave={handlePopoverClose}
+      >
+        {props.text}
+      </Typography>
+      <React.Fragment>
+      { isSelected ?
+        <img src={IndicatorImg}
+        alt="menu-indicator"
+        style={{position:'absolute',left:anchorEl ? anchorEl.offsetWidth + 15 : 0,top:'0px'}}
+        ></img> 
+      : null}
+      <Popover
+        id="mouse-over-popover"
+        sx={{
+          pointerEvents: 'none',
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'center',
+          horizontal: anchorEl ? anchorEl.offsetWidth + 65 : 0,
+        }}
+        transformOrigin={{
+          vertical: 'center',
+          horizontal: 'left',
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+        {props.children}
+      </Popover>
+      </React.Fragment>
+    </React.Fragment>
+  ) 
 }
