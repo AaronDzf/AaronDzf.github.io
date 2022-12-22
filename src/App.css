@@ -98,18 +98,24 @@ a.icon:visited {
   margin-right: 5px;
 }
 
-.pdfDocument {
-  position: absolute;
-  background-color: none;
-  top:50%;
-  left:50%;
-  transform: translateX(-50%) translateY(-50%);
-  box-shadow: 0 30px 40px 0 rgba(16, 36, 94, 0.2);
-  border: solid rgba(0, 0, 0, 0.5);
-}
-
-.pdfDocument:hover .page-controls{
+.react-pdf__Document:hover .page-controls{
   opacity: 1;
 }
 
+.react-pdf__Page.prevPage {
+  position: relative;
+  z-index: 1;
+}
+
+.react-pdf__Document{
+  height: 770px;
+  width: 595px;
+}
+
+.Element-Center {
+  position: 'absolute';
+  top: '50%';
+  left: '50%';
+  transform: 'translateX(-50%) translateY(-50%)';
+}
 

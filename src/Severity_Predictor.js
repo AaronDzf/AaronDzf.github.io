@@ -26,6 +26,7 @@ function Item(props) {
         width: '100%',
         height: '100%',
         minHeight: props.minHeight,
+        minWidth: props.minWidth,
         maxWidth: props.maxWidth,
         }));
 
@@ -35,13 +36,32 @@ function Item(props) {
         </CardItem>
     );
 }
-  
+
+function DocumentContainer(props) {
+    const DocContainer = styled(Container)(({ theme }) => ({
+        padding: theme.spacing(0),
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translateX(-50%) translateY(-50%)',
+        border: '3px solid rgba(0, 0, 0, 0.5)',
+        boxShadow: '0 30px 40px 0 rgba(16, 36, 94, 0.2)',
+        width:'max-content',
+    }));
+
+    return (
+        <DocContainer disableGutters>
+            {props.children}
+        </DocContainer>
+    );
+}
+
 // pdf-react viewer configs
-// const options = {
-//   cMapUrl: 'cmaps/',
-//   cMapPacked: true,
-//   standardFontDataUrl: 'standard_fonts/',
-// };
+const options = {
+  cMapUrl: 'cmaps/',
+  cMapPacked: true,
+  standardFontDataUrl: 'standard_fonts/',
+};
 
 // image imports
 function importFigures(r) {
@@ -52,48 +72,74 @@ function importFigures(r) {
 
 const images = importFigures(require.context('./Assets/images/', false, /^(?:.*\/)?CC_Figure[^\/]*\.jpg/));
 
-function Predictor () {
-
+function PDFViewer() {
     // pdf viewer generator
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
-    
+
     function onDocumentLoadSuccess({numPages}) {
         setNumPages(numPages);
     }
     
-    const goToPrevPage = () =>
-        setPageNumber(pageNumber - 1 <= 1 ? 1 : pageNumber - 1);
+    function changePage(offset) {
+        setPageNumber((prevPageNumber) => prevPageNumber + offset);
+    }
 
-    const goToNextPage = () =>
-        setPageNumber(
-            pageNumber + 1 >= numPages ? numPages : pageNumber + 1,
-    );
+    function goToPrevPage() {
+        changePage(-1)
+    }
+
+    function goToNextPage() {
+        changePage(1)
+    }
+
+    function loadingImg() {
+        return (
+            <div position='relative'>
+                <img src={images["CC_Figure16.jpg"]} alt="" width='450px'
+                style={{position:'absolute', top:'50%', left:'50%', transform: 'translateX(-50%) translateY(-50%)',
+                border:'3px solid rgba(0, 0, 0, 0.5)'}}/>
+            </div>
+            
+        )
+    }
 
     const pdfReport = (filename) => {
         return (
-            <div>
-                <Document 
+            <DocumentContainer>
+                <Document
                     file={filename} 
                     onLoadSuccess={onDocumentLoadSuccess}
-                    onLoadError={console.error} 
-                    // options={options}
-                    className='pdfDocument'
+                    onLoadError={console.error}
+                    options={options}
+                    loading={loadingImg}
                 >
-                    <Page pageNumber={pageNumber}/>
+                    <Page 
+                        key={pageNumber}
+                        pageNumber={pageNumber}
+                        renderAnnotationLayer={false}
+                        
+                        height={770}
+                        width={595}
+                    />
                     <div className="page-controls">
-                        <button onClick={goToPrevPage}><NavigateBefore/></button>
+                        <button disabled={pageNumber <= 1} onClick={goToPrevPage}><NavigateBefore/></button>
                         <span>
                             Page {pageNumber} of {numPages}
                         </span>
-                        <button onClick={goToNextPage}><NavigateNext/></button>
+                        <button disabled={pageNumber >= numPages} onClick={goToNextPage}><NavigateNext/></button>
                     </div>
                 </Document>
-            </div>
+            </DocumentContainer>
         );
     }
 
-    // image gallery generator
+    return (
+        pdfReport(pdfDoc)
+    )
+}
+
+function Gallery() {
     const [topFigure, setTopFigure] = useState(1);
     const [botFigure, setBotFigure] = useState(2);
     const gallerySize = Object.keys(images).length;
@@ -111,20 +157,23 @@ function Predictor () {
     const FigureElements = (index) => {
         const FigureString = "CC_Figure" + index + ".jpg"
         return (
-            <img src={images[FigureString]} alt="" width='450px' style={{display:'flex',margin:0, border:'2px solid black'}}/>
+            <img src={images[FigureString]} alt="" width='450px' style={{display:'flex',margin:0, border:'3px solid rgba(0, 0, 0, 0.5)'}}/>
         );
     }
+    
+    return (
+        <React.Fragment>
+            {FigureElements(topFigure)}
+            {FigureElements(botFigure)}
+            {GalleryButton(false,goToPrevFigure)}
+            {GalleryButton(true,goToNextFigure)}
+        </React.Fragment>
+        
+    )
+}
 
-    // grid layout theme
-    // const gridTheme = createTheme({
-    //     breakpoints: {
-    //         values:{
-    //             test: 1000
-    //         }
-    //     }
-    // })   
 
-    // html elements
+function Predictor () {
     return(
         <BoxStyling width='90%' height='100%' display='flex'>
             <Container maxWidth="lg" sx={{mt:4,mb:4}}>
@@ -133,8 +182,8 @@ function Predictor () {
                         <h2 className='Project-Title'>Exploring the Severity of Vehicular Collisions</h2>
                     </Grid2>
                     <Grid2 xs={12} lg={7}>
-                        <Item minHeight='839px'>
-                            {pdfReport(pdfDoc)}
+                        <Item minHeight='797px' minWidth='570px'>
+                            <PDFViewer/>
                         </Item>
                     </Grid2>
                     <Grid2 xs={12} lg={5} style={{padding:0}}>
@@ -142,24 +191,19 @@ function Predictor () {
                             <Item height='100%'>
                                 <Typography variant="h5">Summary</Typography>
                                 <Typography variant="body2">
-                                This paper was written for coursework applying data mining and machine learning introductory techniques.
-                                The topic is an investigation on the severity of vehicular collisions in Canada &#40;STATSCAN, 2017&#41;.
-                                A variety of factors were compared including time, weather conditions, parties involved, collision type,
-                                road type, intersection, etc. I primarily worked on exploratory data analysis and building a logistic 
-                                regression model to identify key factors in predicting severity of a collision.
+                                This academic coursework paper is an application of data mining techniques to investigate possible factors of severe 
+                                accidents in vehicular collisions. Using a dataset from &#40;STATSCAN, 2017&#41;, A fitted logistic regression
+                                model was used to predict the severity, fataility of person&#40;s&#41;, of a collision based on significant factors 
+                                screened out after an intial exploratory analysis phase.
                                 </Typography>
                             </Item>
                         </Grid2>
                         <Grid2 xs={12}>
                             <Item height='100%' maxWidth='483px'>
-                                {FigureElements(topFigure)}
-                                {FigureElements(botFigure)}
-                                {GalleryButton(false,goToPrevFigure)}
-                                {GalleryButton(true,goToNextFigure)}
+                                <Gallery/>
                             </Item>
                         </Grid2>
                     </Grid2>
-
                 </Grid2>
             </Container>
         </BoxStyling>
