@@ -13,6 +13,16 @@
   }
 }
 
+@media only screen and (max-width:450px) {
+  #dp {
+    width: 250px;
+    height: 250px;
+  }
+  #gallery {
+    width: 300px;
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

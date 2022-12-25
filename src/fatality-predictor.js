@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
-import {Card, styled, Container, Typography} from '@mui/material'
+import React, {useState, useEffect} from 'react';
+import {Card, styled, Container, Typography, useMediaQuery, SvgIcon} from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import './App.css'
-import { GalleryButton, BoxStyling } from './components/mui';
-import { NavigateBefore,NavigateNext } from '@mui/icons-material';
-import pdfDoc from './Assets/files/SeverityReport.pdf'
+import { GalleryButton, BoxStyling} from './components/mui';
+import { NavigateBefore,NavigateNext,PictureAsPdf} from '@mui/icons-material';
+import { GetWindowWidth } from './components/utility';
+import pdfDoc from './Assets/files/SeverityReport.pdf';
 
 // imports for pdf viewer
 import {Document, Page} from 'react-pdf/dist/esm/entry.webpack';
@@ -25,9 +26,14 @@ function Item(props) {
         position: 'relative',
         width: '100%',
         height: '100%',
-        minHeight: props.minHeight,
-        minWidth: props.minWidth,
-        maxWidth: props.maxWidth,
+        minHeight: 'auto',
+        minWidth: 'auto',
+        maxWidth: 'auto',
+        [theme.breakpoints.up("sm")]: {
+            minHeight: props.minHeight,
+            minWidth: props.minWidth,
+            maxWidth: props.maxWidth
+        },
         }));
 
     return (
@@ -76,6 +82,7 @@ function PDFViewer() {
     // pdf viewer generator
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
+    const [windowWidth, setWindowWidth] = useState(GetWindowWidth())
 
     function onDocumentLoadSuccess({numPages}) {
         setNumPages(numPages);
@@ -96,7 +103,7 @@ function PDFViewer() {
     function loadingImg() {
         return (
             <div position='relative'>
-                <img src={images["CC_Figure16.jpg"]} alt="" width='450px'
+                <img id="gallery" src={images["CC_Figure16.jpg"]} alt="" width='450px'
                 style={{position:'absolute', top:'50%', left:'50%', transform: 'translateX(-50%) translateY(-50%)',
                 border:'3px solid rgba(0, 0, 0, 0.5)'}}/>
             </div>
@@ -104,6 +111,17 @@ function PDFViewer() {
         )
     }
 
+    useEffect(() => {
+        function handleResize(){
+            setWindowWidth(GetWindowWidth())
+        }
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        }
+    },[]);
+    
     const pdfReport = (filename) => {
         return (
             <DocumentContainer>
@@ -118,7 +136,6 @@ function PDFViewer() {
                         key={pageNumber}
                         pageNumber={pageNumber}
                         renderAnnotationLayer={false}
-                        
                         height={770}
                         width={595}
                     />
@@ -134,8 +151,22 @@ function PDFViewer() {
         );
     }
 
+    const pdfReportLink = () => {
+        return (
+            <React.Fragment>
+                <Typography variant="body2">PDF cannot be displayed on mobile device</Typography>
+                <Typography variant="body2">Please use Desktop/Tablet or link below</Typography>
+                <a href="https://github.com/AaronDzf/AaronDzf.github.io/blob/master/src/Assets/files/SeverityReport.pdf"className='icon'>
+                <SvgIcon fontSize='large' sx={{mt:'5px', mx:'1px', color:'white'}}>
+                    <PictureAsPdf/>
+                </SvgIcon>
+                </a>
+            </React.Fragment>
+        )
+    }
+
     return (
-        pdfReport(pdfDoc)
+        (windowWidth >= 600 ? pdfReport(pdfDoc) : pdfReportLink())
     )
 }
 
@@ -157,7 +188,7 @@ function Gallery() {
     const FigureElements = (index) => {
         const FigureString = "CC_Figure" + index + ".jpg"
         return (
-            <img src={images[FigureString]} alt="" width='450px' style={{display:'flex',margin:0, border:'3px solid rgba(0, 0, 0, 0.5)'}}/>
+            <img id="gallery" src={images[FigureString]} alt="" width='450px' style={{display:'flex',margin:0, border:'3px solid rgba(0, 0, 0, 0.5)'}}/>
         );
     }
     
@@ -181,16 +212,16 @@ function Predictor () {
                     <Grid2 xs={12}>
                         <h2 className='Project-Title'>Exploring the Fatality of Vehicular Collisions</h2>
                     </Grid2>
-                    <Grid2 xs={12} lg={7}>
-                        <Item minHeight='797px' minWidth='570px'>
+                    <Grid2 xs={12} lg={7} order={{xs:3,lg:2}}>
+                        <Item minHeight='797px' minWidth='570px' maxWidth='665px'>
                             <PDFViewer/>
                         </Item>
                     </Grid2>
-                    <Grid2 xs={12} lg={5} style={{padding:0}}>
-                        <Grid2 xs={12}>
+                    <Grid2 xs={12} lg={5} style={{padding:0}} order={{xs:2,lg:3}}>
+                        <Grid2 xs={12} >
                             <Item height='100%'>
                                 <Typography variant="h5">Summary</Typography>
-                                <Typography variant="body2">
+                                <Typography variant="body2" sx={{textAlign:{xs:'left',m:'center'}}}>
                                 This academic coursework paper is an application of data mining techniques to investigate possible factors of fatality 
                                 accidents in vehicular collisions. Using a dataset from &#40;STATSCAN, 2017&#41;, A fitted logistic regression
                                 model was used to predict the fataility of person&#40;s&#41; in a collision based on significant factors 

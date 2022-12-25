@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from  '@mui/material/CssBaseline'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
 import background from './Assets/images/background.png'
 
 const fontList = [
@@ -13,12 +13,12 @@ const fontList = [
   'Courier New',
 ]
 
-const siteTheme = createTheme({
+let siteTheme = createTheme({
   palette: { 
     type: 'dark',
     primary: {
       main: '#121212',
-      light: '#737373',
+      light: '#424242',
     },
     secondary: {
       main: '#ffa000',
@@ -34,6 +34,15 @@ const siteTheme = createTheme({
     },
   },
   spacing: 4,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
   components: {
     MuiCssBaseline:{
       styleOverrides:{
@@ -47,9 +56,11 @@ const siteTheme = createTheme({
     fontFamily: fontList.join(','),
     h3: {
       fontFamily: fontList.slice(1,3).join(','),
-    }
+    },
   },
 });
+
+siteTheme = responsiveFontSizes(siteTheme);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -58,7 +69,6 @@ root.render(
       <CssBaseline/>
         <App />
     </ThemeProvider>
-    {console.log([fontList.slice(1,3)].join(','))}
   </React.StrictMode>
 );
 

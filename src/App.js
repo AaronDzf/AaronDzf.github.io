@@ -5,19 +5,21 @@ import Home from "./Home";
 import TicTacToe from "./tictactoe";
 import Predictor from './fatality-predictor';
 
-
 //MUI Library imports
 import {DrawerAppBar, DrawerItem} from './components/mui';
-import { Container, Typography,styled} from '@mui/material';
+import { Container, Typography, styled, useMediaQuery} from '@mui/material';
 import { Box, List, ListItem, ListItemButton, Divider} from '@mui/material';
+import { useTheme } from '@emotion/react';
 
 
-const DrawerList = () => {
+const DrawerList = (isDesktop) => {
 
   const PopoverItem = styled(Typography)(({theme}) => ({
     background: theme.palette.secondary.dark,
     padding: theme.spacing(2),
   }));
+
+  var hoverDialogue = ['meow','purr','mew','hiss','growl','chirp','yowl','snarl','trill']
 
   return (
     <div>
@@ -45,14 +47,20 @@ const DrawerList = () => {
         <ListItemButton>
           <Link to="/fatality-predictor" className='DrawerList-Text'>
             <DrawerItem variant="h4" text="Fatality Predictor">
-              <PopoverItem variant="body1">Data mining report on the fatality of vehicular collisions</PopoverItem>
+              {isDesktop ? 
+                <PopoverItem variant="body1">Data mining report on the fatality of vehicular collisions</PopoverItem>:
+                <PopoverItem variant="body1">purr</PopoverItem>
+              }
             </DrawerItem>
           </Link>
         </ListItemButton>
         <ListItemButton>
           <Link to="/tictactoe" className='DrawerList-Text'>
           <DrawerItem variant="h4" text="Tic-Tac-Toe">
-              <PopoverItem variant="body1">A simple game of tictactoe</PopoverItem>
+              {isDesktop ? 
+                <PopoverItem variant="body1">Data mining report on the fatality of vehicular collisions</PopoverItem>:
+                <PopoverItem variant="body1">purr</PopoverItem>
+              }
           </DrawerItem>
           </Link>
         </ListItemButton>
@@ -82,12 +90,15 @@ function useScroll() {
 }
 
 function NavBar() {
+  const siteTheme = useTheme();
+  const isDesktop = useMediaQuery(siteTheme.breakpoints.up("md"));
+
   useScroll()
 
   return (
     <div>
     <DrawerAppBar>
-        <DrawerList/>
+        {DrawerList(isDesktop)}
     </DrawerAppBar>
     <Container maxWidth="l" sx={{marginTop:'64px'}}>
       <Box align="center" sx={{margin:'5em 1em 2em 1em'}}>

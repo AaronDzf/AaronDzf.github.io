@@ -150,7 +150,7 @@ export function GalleryButton(isNext, changeFigure) {
 
 export function BoxStyling(props) {
   const BoxComponent = styled(Box)(({theme}) => ({
-    width: props.width,
+    width: '100%', [theme.breakpoints.up("md")]: {width: props.width},
     height: props.height,
     display: props.display,
     padding: props.padding,

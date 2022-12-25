@@ -46,16 +46,16 @@ class Home extends React.Component {
                   Start
             </Typography>
             <div className='portrait'>
-              <img src={homePortrait} height="350px" width="350px" alt='dp'/>
+              <img id="dp" src={homePortrait} height="350px" width="350px" alt='dp'/>
             </div>
           </section>
           <section id='about-me'>
-            <BoxStyling width='80%' height='100%' padding='30px'>
+            <BoxStyling height='100%' width='80%'>
               <Container>
                 <Typography variant="h3">
                   Who am i?
                 </Typography>
-                <Typography variant="body1" sx={{m:5}}>
+                <Typography variant="body1" sx={{m:5, textAlign:{xs:'left',m:'center'}}}>
                   I am a newly graduated Management Engineering student from the University of Waterloo <br></br>
                   I currently have 2.5 years of co-op work experience across a variety of roles including operations, data analytics, and software engineering.
                   I am passionate in applying data science and analytics to generate insights used to better decision making/strategies in organizations -
@@ -64,7 +64,7 @@ class Home extends React.Component {
                 <Typography variant="h3" sx={{m:5}}>              
                   What is this?
                 </Typography>
-                <Typography variant="body1" sx={{m:5}}>
+                <Typography variant="body1" sx={{m:5,textAlign:{xs:'left',m:'center'}}}>
                   This is my personal website which I will be sharing my experiences and personal projects on<br></br>
                   I am currently learning React to build my web dev skills to display my previous and current work <br></br>
                   Feel free to navigate through my projects by clicking my name at the top or get to know me more through my platforms below

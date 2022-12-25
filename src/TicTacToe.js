@@ -1,8 +1,9 @@
 import React from 'react';
 import './TicTacToe.css';
-import {Button, Paper, Typography} from '@mui/material';
+import {Button, Paper, Typography, Container, useMediaQuery} from '@mui/material';
 import { Sort } from '@mui/icons-material'
 import { BoxStyling } from './components/mui';
+import { useTheme } from '@emotion/react';
 
 /* This application was implemented using the React documentation on Tic Tac Toe with additional features including:
 / 1. Location display in the history list in the (column, row) format
@@ -18,7 +19,8 @@ function Square(props){
         <button 
             className="square" 
             onClick={props.onClick}
-            style={{backgroundColor: props.winningSquares ? "green" : props.isSelected ? "gold" : "white"}}>
+            style={{backgroundColor: props.winningSquares ? "green" : props.isSelected ? "gold" : "white",
+            }}>
         {props.value}
         </button>
     );
@@ -114,13 +116,6 @@ class Game extends React.Component {
         })
     }
 
-    // updateBoard(step) {
-    //     // step.squares.forEach(square => {
-            
-    //     // })
-    //     this.state.current = step
-    // }
-    
     sortHistory() {
         this.setState ({
             isDescending: !this.state.isDescending
@@ -170,10 +165,10 @@ class Game extends React.Component {
                 />  
             </div>
             <div className="game-info">
-                <div style={{position:'relative', textAlign:'left', paddingLeft:15}}>
+                <div style={{position:'relative', display:'flex', textAlign:'left', marginBottom:'10px'}}>
                     <Paper
                         variant="outlined"
-                        sx={{mx:1,px:0.5,py:0.25, width:'120px', height:'28px',border:'solid white 1px',
+                        sx={{width:'120px', height:'28px',border:'solid white 1px',
                             alignItems:'center', display:'flex', justifyContent:'center', fontWeight:'500'}}>
                         {status}
                     </Paper>
@@ -182,8 +177,9 @@ class Game extends React.Component {
                     startIcon={<Sort/>} 
                     onClick={() => this.sortHistory()}
                     size = "small"
-                    sx={{px:0.5,py:0.25, height:'28px',
-                    backgroundColor:'primary.main',border:'solid white 1px',position:'absolute',right:0,top:0}}>
+                    sx={{height:'28px', fontSize:'1rem', mx: '5px',
+                    backgroundColor:'primary.main',border:'solid white 1px',
+                    }}>
                         SORT
                     </Button>
                 </div>    
@@ -232,29 +228,31 @@ function changeSelected(i) {
 const HistoryButton = {
     position: 'relative',
     height: '30px',
-    width: '200px',
+    width: '203px',
     border: 1,
     borderColor: '#ffffff',
-    ml: '3px',
-    my: '5px',
+    fontSize: '1rem'
 };
 
 
+
+
 // Create component class for exporting and running the game
-class TicTacToe extends React.Component {
-    render() {
+function TicTacToe () {
+    const siteTheme = useTheme();
+    const isMobile = useMediaQuery(siteTheme.breakpoints.down("sm"));
+    
         return (
-            <BoxStyling width='800px' height='600px'>
+            <BoxStyling width='800px' height={isMobile ? '800px': '600px'}>
                 <Typography variant='h3' sx={{m:3}}>X or O?</Typography>
-                <div style={{paddingLeft:'25%'}}>
+                <Container>
                     <Game/>
-                </div>
+                </Container>
                 <p style={{fontStyle:'italic',fontSize:'50%', position:'absolute', bottom: 0, left:'50%', marginRight:'-50%',transform:'translate(-50%,-50%)'}}>
                     This game is an extension of the Tic Tac Toe documentation from React
                 </p>
             </BoxStyling>
         );
-    }
   }
 
 export default TicTacToe;
