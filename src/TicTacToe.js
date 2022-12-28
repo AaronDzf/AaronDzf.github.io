@@ -231,7 +231,8 @@ const HistoryButton = {
     width: '203px',
     border: 1,
     borderColor: '#ffffff',
-    fontSize: '1rem'
+    fontSize: '1rem',
+    marginBottom:'5px'
 };
 
 

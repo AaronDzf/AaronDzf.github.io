@@ -6,7 +6,7 @@ import TicTacToe from "./tictactoe";
 import Predictor from './fatality-predictor';
 
 //MUI Library imports
-import {DrawerAppBar, DrawerItem} from './components/mui';
+import { DrawerAppBar, DrawerItem, PopoverItem} from './components/mui';
 import { Container, Typography, styled, useMediaQuery} from '@mui/material';
 import { Box, List, ListItem, ListItemButton, Divider} from '@mui/material';
 import { useTheme } from '@emotion/react';
@@ -14,27 +14,20 @@ import { useTheme } from '@emotion/react';
 
 const DrawerList = (isDesktop) => {
 
-  const PopoverItem = styled(Typography)(({theme}) => ({
-    background: theme.palette.secondary.dark,
-    padding: theme.spacing(2),
-  }));
-
-  var hoverDialogue = ['meow','purr','mew','hiss','growl','chirp','yowl','snarl','trill']
-
   return (
     <div>
       <List>
         <ListItemButton>
           <Link to="/" className='DrawerList-Text'>
-          <DrawerItem variant="h4" text="Home">
-              <PopoverItem variant="body1">Moew</PopoverItem>
+            <DrawerItem variant={isDesktop ? "h4" : "h5"} text="Home">
+              <PopoverItem variant="body1" dialogue="true"></PopoverItem>
             </DrawerItem>
           </Link>
         </ListItemButton>
         <ListItemButton>
           <Link to="/#about-me" className='DrawerList-Text'>
-            <DrawerItem variant="h4" text="About Me">
-              <PopoverItem variant="body1">Purr</PopoverItem>
+            <DrawerItem variant={isDesktop ? "h4" : "h5"} text="About Me">
+              <PopoverItem variant="body1" dialogue="true"></PopoverItem>
             </DrawerItem>
           </Link>
         </ListItemButton>
@@ -46,19 +39,19 @@ const DrawerList = (isDesktop) => {
         </ListItem>
         <ListItemButton>
           <Link to="/fatality-predictor" className='DrawerList-Text'>
-            <DrawerItem variant="h4" text="Fatality Predictor">
+            <DrawerItem variant={isDesktop ? "h4" : "h5"} text="Fatality Predictor">
               {isDesktop ? 
                 <PopoverItem variant="body1">Data mining report on the fatality of vehicular collisions</PopoverItem>:
-                <PopoverItem variant="body1">purr</PopoverItem>
+                <PopoverItem variant="body1" dialogue="true"></PopoverItem>
               }
             </DrawerItem>
           </Link>
         </ListItemButton>
         <ListItemButton>
           <Link to="/tictactoe" className='DrawerList-Text'>
-          <DrawerItem variant="h4" text="Tic-Tac-Toe">
+          <DrawerItem variant={isDesktop ? "h4" : "h5"} text="Tic-Tac-Toe">
               {isDesktop ? 
-                <PopoverItem variant="body1">Data mining report on the fatality of vehicular collisions</PopoverItem>:
+                <PopoverItem variant="body1">A simple game of Tic-tac-Toe</PopoverItem>:
                 <PopoverItem variant="body1">purr</PopoverItem>
               }
           </DrawerItem>
@@ -77,10 +70,8 @@ function useScroll() {
     if (location.hash) {
         let header = document.getElementById('app-bar')
         let elem = document.getElementById(location.hash.slice(1))
-        console.log(elem)
         if (elem && header) {
           let scrollY = elem.offsetTop - header.scrollHeight
-          console.log(elem)
           window.scrollTo({top:scrollY,left:0, behavior:"smooth"})
         }
     } else {

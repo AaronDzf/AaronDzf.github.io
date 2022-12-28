@@ -260,16 +260,27 @@ export function TimelineComponent() {
 export function DrawerItem(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isSelected, setIsSelected] = React.useState(false);
-
+  const [dialogueIndex, setDialogueIndex] = React.useState(1);
+ 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget)
     setIsSelected(true)
+    chooseDialogue();
   };
 
   const handlePopoverClose = () => {
     setAnchorEl(null)
     setIsSelected(false)
   };
+
+  const chooseDialogue = () => {
+    var index = Math.floor(Math.random()*8)
+    setDialogueIndex(index)
+  }
+
+  const PopoverProps = React.Children.map(props.children, (child) =>
+    React.cloneElement(child, {dialogueindex:dialogueIndex})
+  )
 
   const open = Boolean(anchorEl);
   return (
@@ -307,9 +318,26 @@ export function DrawerItem(props) {
         onClose={handlePopoverClose}
         disableRestoreFocus
       >
-        {props.children}
+        {/* {props.children} */}
+        {PopoverProps}
       </Popover>
       </React.Fragment>
     </React.Fragment>
   ) 
+}
+
+export function PopoverItem(props) {
+  const PopoverComponent = styled(Typography)(({theme}) => ({
+    background: theme.palette.secondary.dark,
+    padding: theme.spacing(2),
+  }));
+
+  const hoverDialogue = ['meow','purr','mew','hiss','growl','chirp','yowl','snarl','trill'];
+
+  return (
+    <PopoverComponent variant='body1'>
+      {props.dialogue ? hoverDialogue[props.dialogueindex]:props.children}
+    </PopoverComponent>
+  )
+  
 }
