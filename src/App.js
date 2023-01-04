@@ -4,10 +4,11 @@ import {BrowserRouter, Link, Route, Routes, useLocation} from "react-router-dom"
 import Home from "./Home";
 import TicTacToe from "./tictactoe";
 import Predictor from './fatality-predictor';
+import Capstone from './capstone-design';
 
 //MUI Library imports
 import { DrawerAppBar, DrawerItem, PopoverItem} from './components/mui';
-import { Container, Typography, styled, useMediaQuery} from '@mui/material';
+import { Container, Typography, useMediaQuery} from '@mui/material';
 import { Box, List, ListItem, ListItemButton, Divider} from '@mui/material';
 import { useTheme } from '@emotion/react';
 
@@ -38,6 +39,16 @@ const DrawerList = (isDesktop) => {
           <Typography variant="subtitle1">Projects</Typography>
         </ListItem>
         <ListItemButton>
+          <Link to="/capstone-design" className='DrawerList-Text'>
+            <DrawerItem variant={isDesktop ? "h4" : "h5"} text="Capstone Design">
+                {isDesktop ? 
+                  <PopoverItem variant="body1">8 month web app development and data modelling project</PopoverItem>:
+                  <PopoverItem variant="body1" dialogue="true"></PopoverItem>
+                }
+            </DrawerItem>
+          </Link>
+        </ListItemButton>
+        <ListItemButton>
           <Link to="/fatality-predictor" className='DrawerList-Text'>
             <DrawerItem variant={isDesktop ? "h4" : "h5"} text="Fatality Predictor">
               {isDesktop ? 
@@ -52,12 +63,12 @@ const DrawerList = (isDesktop) => {
           <DrawerItem variant={isDesktop ? "h4" : "h5"} text="Tic-Tac-Toe">
               {isDesktop ? 
                 <PopoverItem variant="body1">A simple game of Tic-tac-Toe</PopoverItem>:
-                <PopoverItem variant="body1">purr</PopoverItem>
+                <PopoverItem variant="body1" dialogue="true"></PopoverItem>
               }
           </DrawerItem>
           </Link>
         </ListItemButton>
-      </List>
+        </List>
       <Divider />
     </div>
   );
@@ -96,6 +107,7 @@ function NavBar() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/" element={<Home/>}>{useEffect}</Route>
+          <Route path="/capstone-design" element={<Capstone/>} />
           <Route path="/tictactoe" element={<TicTacToe/>} />
           <Route path="/fatality-predictor" element={<Predictor/>} />
         </Routes>

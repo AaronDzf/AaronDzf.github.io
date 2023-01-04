@@ -1,10 +1,9 @@
 import * as React from 'react';
-import {AppBar, Button, Box, Toolbar, Typography} from '@mui/material';
-import {IconButton, Menu, MenuItem, Drawer} from '@mui/material/';
+import {AppBar, Button, Box, Toolbar, Typography, IconButton, Menu, MenuItem, Drawer, Card} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavigateBefore,NavigateNext } from '@mui/icons-material';
 import { ClickAwayListener} from '@mui/base';
-import {Paper, styled, Popover} from '@mui/material'
+import {Paper, styled, Popover, Container, Tooltip} from '@mui/material'
 import {Timeline,TimelineItem,TimelineContent,TimelineSeparator,TimelineConnector,TimelineOppositeContent} from '@mui/lab'
 import IndicatorImg from '../Assets/images/catpopover.png'
 
@@ -118,30 +117,63 @@ export function StackItem({children}) {
   )
 }
 
+export function Gallery(imageArray) {
+  const [imgNumber, setImgNumber] = React.useState(0);
+  const GallerySize = imageArray.length;
+
+  const NextImg = () => {
+    if (imgNumber < GallerySize-1) {
+      setImgNumber(imgNumber + 1)
+    } else {
+      return null;
+    }
+  }
+
+  const PrevImg = () => {
+    if (imgNumber > 0) {
+      setImgNumber(imgNumber - 1)
+    } else {
+      return null;
+    }
+  }
+  
+
+  return (
+    <Container disableGutters sx={{position:'relative','&:hover .gallery-button': {opacity: 1}}}>
+        {imageArray[imgNumber]}
+          {GalleryButton(true, NextImg)}
+          {GalleryButton(false, PrevImg)}
+    </Container>
+    
+)
+}
+
 export function GalleryButton(isNext, changeFigure) {
 
   const GalleryButton = styled(IconButton)({
-    width: '44px',
+    width: '10%',
     height: '98%',
     background: 'none',
     borderRadius:0,
     display: 'flex',
     position:'absolute',
+    padding:0,
     top: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(0%, -50%)',
     size:'large',
     margin:0,
+    opacity:0,
   })
 
-  if (isNext) {
+  if (isNext===true) {
     return (
-      <GalleryButton sx={{right:'-1%'}} onClick={changeFigure}>
+      <GalleryButton className='gallery-button' sx={{right:0}} onClick={changeFigure}>
         <NavigateNext/>
       </GalleryButton>
     );
   } else {
     return (
-      <GalleryButton sx={{left:'8%'}} onClick={changeFigure}>
+      <GalleryButton className='gallery-button' onClick={changeFigure}>
         <NavigateBefore/>
       </GalleryButton>
     )
@@ -340,4 +372,61 @@ export function PopoverItem(props) {
     </PopoverComponent>
   )
   
+}
+
+
+export function ProjectCard(props) {
+  const CardItem = styled(Card)(({ theme }) => ({
+    backgroundColor: theme.palette.primary.light,
+    ...theme.typography.body2,
+    padding: theme.spacing(2),
+    color: theme.palette.text.primary,
+    fontWeight: 'Medium',
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    minHeight: 'auto',
+    minWidth: 'auto',
+    maxWidth: 'auto',
+    [theme.breakpoints.up("sm")]: {
+        minHeight: props.minHeight,
+        minWidth: props.minWidth,
+        maxWidth: props.maxWidth
+    },
+    }));
+
+  return (
+      <CardItem>
+          {props.children}
+      </CardItem>
+  );
+}
+
+export function SectionButton(props) {
+
+  const ButtonComponent = styled(Button)(({ theme }) => ({
+    backgroundColor: theme.palette.primary.lightcontrast,
+    ...theme.typography.h5,
+    padding: 0,
+    color: theme.palette.text.primary,
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    ":hover": {backgroundColor:theme.palette.secondary.dark}
+    }));
+
+  return (
+      <ButtonComponent onClick={props.onClick}>
+          {props.children}
+      </ButtonComponent>
+  );
+}
+
+export function ImageTooltips(props) {
+
+  return (
+    <Tooltip title={props.title} followCursor>
+      {props.children}
+    </Tooltip>
+  )
 }
