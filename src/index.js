@@ -19,6 +19,7 @@ let siteTheme = createTheme({
     primary: {
       main: '#121212',
       light: '#424242',
+      lightcontrast: '#303030',
     },
     secondary: {
       main: '#ffa000',

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Card, styled, Container, Typography, useMediaQuery, SvgIcon} from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import './App.css'
-import { GalleryButton, BoxStyling} from './components/mui';
+import { GalleryButton, BoxStyling, ProjectCard} from './components/mui';
 import { NavigateBefore,NavigateNext,PictureAsPdf} from '@mui/icons-material';
 import { GetWindowWidth } from './components/utility';
 import pdfDoc from './Assets/files/SeverityReport.pdf';
@@ -16,32 +16,6 @@ import { pdfjs } from 'react-pdf';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-function Item(props) {
-    const CardItem = styled(Card)(({ theme }) => ({
-        backgroundColor: theme.palette.primary.light,
-        ...theme.typography.body2,
-        padding: theme.spacing(2),
-        color: theme.palette.text.primary,
-        fontWeight: 'Medium',
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        minHeight: 'auto',
-        minWidth: 'auto',
-        maxWidth: 'auto',
-        [theme.breakpoints.up("sm")]: {
-            minHeight: props.minHeight,
-            minWidth: props.minWidth,
-            maxWidth: props.maxWidth
-        },
-        }));
-
-    return (
-        <CardItem>
-            {props.children}
-        </CardItem>
-    );
-}
 
 function DocumentContainer(props) {
     const DocContainer = styled(Container)(({ theme }) => ({
@@ -188,17 +162,17 @@ function Gallery() {
     const FigureElements = (index) => {
         const FigureString = "CC_Figure" + index + ".jpg"
         return (
-            <img id="gallery" src={images[FigureString]} alt="" width='450px' style={{display:'flex',margin:0, border:'3px solid rgba(0, 0, 0, 0.5)'}}/>
+            <img id="gallery" src={images[FigureString]} alt="" width='450px' style={{margin:0, border:'3px solid rgba(0, 0, 0, 0.5)'}}/>
         );
     }
     
     return (
-        <React.Fragment>
+        <Container sx={{position:'relative','&:hover .gallery-button': {opacity: 1}}}>
             {FigureElements(topFigure)}
             {FigureElements(botFigure)}
             {GalleryButton(false,goToPrevFigure)}
             {GalleryButton(true,goToNextFigure)}
-        </React.Fragment>
+        </Container>
         
     )
 }
@@ -213,13 +187,13 @@ function Predictor () {
                         <h2 className='Project-Title'>Exploring the Fatality of Vehicular Collisions</h2>
                     </Grid2>
                     <Grid2 xs={12} lg={7} order={{xs:3,lg:2}}>
-                        <Item minHeight='797px' minWidth='570px' maxWidth='665px'>
+                        <ProjectCard minHeight='797px' minWidth='570px' maxWidth='665px'>
                             <PDFViewer/>
-                        </Item>
+                        </ProjectCard>
                     </Grid2>
                     <Grid2 xs={12} lg={5} style={{padding:0}} order={{xs:2,lg:3}}>
                         <Grid2 xs={12} >
-                            <Item height='100%'>
+                            <ProjectCard height='100%'>
                                 <Typography variant="h5">Summary</Typography>
                                 <Typography variant="body2" sx={{textAlign:{xs:'left',m:'center'}}}>
                                 This academic coursework paper is an application of data mining techniques to investigate possible factors of fatality 
@@ -227,12 +201,12 @@ function Predictor () {
                                 model was used to predict the fataility of person&#40;s&#41; in a collision based on significant factors 
                                 screened out after an intial exploratory analysis phase.
                                 </Typography>
-                            </Item>
+                            </ProjectCard>
                         </Grid2>
                         <Grid2 xs={12}>
-                            <Item height='100%' maxWidth='483px'>
+                            <ProjectCard height='100%' maxWidth='483px'>
                                 <Gallery/>
-                            </Item>
+                            </ProjectCard>
                         </Grid2>
                     </Grid2>
                 </Grid2>
